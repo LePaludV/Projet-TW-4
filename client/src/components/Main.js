@@ -1,13 +1,14 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Header from './Header';
 import OSMap from './OSMap';
 const Main = (props) => {
-
+    
+      
     return (
-        <div className={Main}>
-            <div className='.container-fluid'>
+        <div className="Main">
+            <div className="container-fluid">
                 <Header/>
-                <OSMap/>
+                <OSMap key={1} />
             </div>
             
         </div>
