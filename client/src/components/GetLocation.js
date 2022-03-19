@@ -1,16 +1,32 @@
 import React,{useEffect,useState} from 'react';
 
 const GetLocation = () => {
-    const [coords, setCoords] = useState({lat:43.927, lng: 2.14})
+    const [coords, setCoords] = useState({
+      coordinates:{
+        lat:43.927,
+        lng:2.14
+      },
+      loaded:false})
    
   useEffect(() => {
     if ("geolocation" in navigator) { 
       navigator.geolocation.getCurrentPosition(function(position) {
-           setCoords({lat :position.coords.latitude, lng : position.coords.longitude});
+           setCoords({coordinates :{
+             lat :position.coords.latitude,
+             lng :position.coords.longitude
+            }, 
+            loaded:true
+          });
           });
     } else {
       //Localisation impossibe sur ce navigateur
-      setCoords({lat:43.927, lng: 2.14})
+      setCoords({
+        coordinates:{
+          lat:43.927,
+          lng:2.14
+        },
+          loaded:false
+        });
     }      
   }, [])
     return coords;

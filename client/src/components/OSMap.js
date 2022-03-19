@@ -4,8 +4,12 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import GetLocation from "./GetLocation";
 import UpdateMap from "./UpdateMapLocation";
-
-var IconYou =L.divIcon({className:"bi bi-geo-alt"});
+import PinYou from "../img/maps-and-flags.png";
+var IconYou =L.icon({
+  iconUrl:PinYou,
+  iconSize: [32, 32],
+  //iconAnchor: [0, 32],
+});
 
 
 
@@ -17,16 +21,24 @@ const OSMap = (props) => {
 
 
   return (
-    <div className="OSMap">
-      <div className="col">
+    <div className="OSMap col">
+      <div className="border rounded-2">
         
-        <MapContainer center={locations} position={locations} zoom={14}>
+        <MapContainer center={locations.coordinates} position={locations.coordinates} zoom={14}>
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <UpdateMap locations={locations}></UpdateMap>
-          <Marker icon={IconYou} position={locations}></Marker>
+          <UpdateMap locations={locations.coordinates}></UpdateMap>
+          {locations.loaded &&(
+           <Marker icon={IconYou}  position={locations.coordinates}>
+             <Popup position={locations.coordinates}> Vous êtes ici </Popup>
+           </Marker>)
+           }
+           
+           
+          
+         
         </MapContainer>
       </div>
     </div>
