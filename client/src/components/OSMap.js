@@ -1,8 +1,8 @@
 import React from "react";
-import { MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, CircleMarker} from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import GetLocation from "./GetLocation";
+import GetLocation from "./GetLocation.js";
 import UpdateMap from "./UpdateMapLocation";
 import PinYou from "../img/maps-and-flags.png";
 var IconYou =L.icon({
@@ -17,9 +17,8 @@ var IconYou =L.icon({
 const OSMap = (props) => {
   
   const locations=GetLocation();
+  console.log(props.places);
   console.log(locations);
-
-
   return (
     <div className="OSMap col">
       <div className="border rounded-2">
@@ -35,6 +34,7 @@ const OSMap = (props) => {
              <Popup position={locations.coordinates}> Vous êtes ici </Popup>
            </Marker>)
            }
+           
            
            
           

@@ -1,9 +1,13 @@
 import React from "react";
-
+import getPlaces from "./GetPlaces.js"
 const Sidebar = (props) => {
-    console.log(props.sideBar);
+    //console.log(props.sideBar); //Si true affiche la bar latérale 
     var w=0;
     if(props.sideBar) w=20;
+
+
+    console.log(props.places);
+    
   return (
       
       <div className="Sidebar"style={{width:w+"vw"}} >
