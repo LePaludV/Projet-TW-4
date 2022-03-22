@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Test</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <h1>RPS</h1>
+    <button onclick="sendalert('pierre')">Pierre</button>
+    <button onclick="sendalert('papier')">Papier</button>
+    <button onclick="sendalert('ciseaux')">Ciseaux</button>
+    <script>
+
+        var socket = io();
+        
+        function sendalert(choice) {
+            socket.emit("test", choice);
+        }
+
+        socket.on("pressed", data => {
+            console.log(data)
+            if (socket.id != data[0]) {
+                console.log(data[0] + " choosed " + data[1]);
+            }
+        });
+    </script>
+</body>
+</html>
