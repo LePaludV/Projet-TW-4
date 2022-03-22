@@ -4,29 +4,30 @@ import {
   TileLayer,
   Marker,
   Popup,
-  CircleMarker,
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import GetLocation from "./GetLocation.js";
 import UpdateMap from "./UpdateMapLocation";
 import PinYou from "../img/maps-and-flags.png";
-import PinPlace from "../img/pin-carte.png";
+
 import GetPlaces from "./GetPlaces.js";
+import Lieux from "./Lieux.js"
 var IconYou = L.icon({
   iconUrl: PinYou,
   iconSize: [32, 32],
   //iconAnchor: [0, 32],
 });
 
-var IconPlace = L.icon({
-  iconUrl: PinPlace,
-  iconSize: [32, 32],
-  //iconAnchor: [0, 32],
-});
+
 
 const OSMap = (props) => {
-  const locations = GetLocation();
+  const locations = GetLocation(); 
+  
+// PB -> Quand l'user accept pas le temps de prendre en compte avant le chargement du reste  
+
+
+
   //console.log(props.places);
   console.log(locations);
   return (
@@ -47,27 +48,8 @@ const OSMap = (props) => {
               <Popup position={locations.coordinates}> Vous êtes ici </Popup>
             </Marker>
           )}
-
-          {props.places.map((place) => (
-            <Marker
-              key={place._id}
-              icon={IconPlace}
-              position={{
-                lat: place.latitude,
-                lng: place.longiture,
-              }}
-            >
-              <Popup
-                position={{
-                  lat: place.latitude,
-                  lng: place.longiture,
-                }}
-              >
-                {" "}
-                {place.titre}{" "}
-              </Popup>
-            </Marker>
-          ))}
+          <Lieux places={props.places} /> 
+          
         </MapContainer>
       </div>
     </div>

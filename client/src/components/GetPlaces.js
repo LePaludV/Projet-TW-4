@@ -4,7 +4,7 @@ import GetLocation from "./GetLocation";
 
 
 const GetPlaces = () => {
-let places=[]
+let places=[]/*
     useEffect(() => {
         fetch(" /listPlaces")
           .then(res => res.json())
@@ -18,7 +18,7 @@ let places=[]
             (error) => {console.log(error);
             }
           )
-      }, []);
+      }, []);*/
     
 /*const places=[
     {
@@ -53,7 +53,7 @@ const estDansLeRayon=(userLocation,x,y,R)=>{
     return(((x-userLocation.lng)**2 + (y-userLocation.lat)**2)<R**2)
 }
 
-const validPlaces= places.filter(e=>estDansLeRayon(userLocation,e.longiture,e.latitude,Rayon))
+const validPlaces= places.filter(e=>estDansLeRayon(userLocation,e.lng,e.latitude,Rayon))
 //console.log(validPlaces);
 return validPlaces;
 };

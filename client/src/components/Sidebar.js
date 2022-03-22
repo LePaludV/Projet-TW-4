@@ -6,7 +6,7 @@ const Sidebar = (props) => {
     if(props.sideBar) w=20;
 
 
-    console.log(props.places);
+    //console.log(props.places);
     
   return (
       
@@ -15,9 +15,11 @@ const Sidebar = (props) => {
           <div className="bar text-light">
               <h2>Liste des endroits</h2>
                 <ul>
-                    <li>YO</li>
-                    <li>Lo</li>
-                    <li>al</li>
+                {props.places.map((place) => (
+                  <li key={place._id}>{place.titre}</li>
+                  ))
+                }
+                    
                 </ul>
 
           </div>)}
