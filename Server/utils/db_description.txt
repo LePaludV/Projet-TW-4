@@ -1,0 +1,15 @@
+collection "places":
+    - titre       string
+    - description string
+    - categorie   list["string"]
+    - address     string
+    - longiture   int
+    - latitude    int
+
+collection "trip":
+    - places      list[places]"
+
+collection "user":
+    - username    string
+    - token       string
+    - trips       list[trip]

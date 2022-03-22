@@ -28,6 +28,6 @@ app.get("/listPlaces", async(req, res) => {
   res.json(places);
 });
 
-http.listen(3000, () => {
-  console.log("listening on *:3000");
+http.listen(3001, () => {
+  console.log("listening on *:3001");
 });
