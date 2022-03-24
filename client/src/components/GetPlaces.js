@@ -4,7 +4,7 @@ import L from "leaflet";
 
 
 
-const GetPlaces = (locations,places) => {
+const GetPlaces = (props) => {
 // let places=props.places
 console.log('Starting filter places');
 
@@ -52,16 +52,21 @@ console.log('Starting filter places');
 
 
 const Rayon=5//Rayon de 5km doit être modifiable
-console.log(locations)
+console.log(props.location)
 const lieuxDansLeRayon =(Rayon,point,lieu)=>{
 var monPoint = L.latLng([point.lat,point.lng]);
 var pointDuLieu=L.latLng([lieu.latitude,lieu.longiture])
 return (monPoint.distanceTo(pointDuLieu) <= Rayon*1000)
 }
+useEffect(() => {
+    const validPlaces= props.places.filter(e=>lieuxDansLeRayon(Rayon,props.location.coordinates,e))
+    console.log("Valide places "+validPlaces);
+    props.setPlaces(validPlaces);
+ 
+}, [])
 
-const validPlaces= places.filter(e=>lieuxDansLeRayon(Rayon,locations.coordinates,e))
-console.log("Valide places "+validPlaces);
-return validPlaces;
+
+return (null);
 };
 
 

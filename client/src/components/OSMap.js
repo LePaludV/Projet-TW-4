@@ -4,16 +4,13 @@ import {
   Marker,
   Popup,
   TileLayer,
-  useMapEvents,
 } from 'react-leaflet'
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import GetLocation from "./GetLocation.js";
 import UpdateMap from "./UpdateMapLocation";
 import PinYou from "../img/maps-and-flags.png";
-
-import GetPlaces from "./GetPlaces.js";
 import Lieux from "./Lieux.js"
+
 var IconYou = L.icon({
   iconUrl: PinYou,
   iconSize: [32, 32],
@@ -24,7 +21,7 @@ var IconYou = L.icon({
 
 const OSMap = (props) => {
   const locations = props.locations; 
-  props.setLocation(GetLocation())
+  //props.setLocation(GetLocation())
 
   
 // PB -> Quand l'user accept pas le temps de prendre en compte avant le chargement du reste  

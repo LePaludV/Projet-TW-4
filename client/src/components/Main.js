@@ -8,19 +8,16 @@ import GetLocation from './GetLocation';
 
 const Main = (props) => {
     const [sideBar, setSideBar] = useState(false)
-    const [location, setLocation] = useState(GetLocation())
+    const [location, setLocation] = useState({coordinates:{lat:43.927,lng:2.14}, loaded:false});
     const [places, setPlaces] = useState([]);
-
+    
     useEffect(() => {
       fetch(" /listPlaces")
         .then(res => res.json())
         .then(
           (result) => {
-            setPlaces(GetPlaces(location,result));
+            setPlaces(result);
           },
-          // Remarque : il faut gérer les erreurs ici plutôt que dans
-          // un bloc catch() afin que nous n’avalions pas les exceptions
-          // dues à de véritables bugs dans les composants.
           (error) => {console.log(error);
           }
         )
@@ -28,6 +25,8 @@ const Main = (props) => {
     
     return (
         <div className="Main row">
+                <GetPlaces location={location} places={places} setPlaces={setPlaces}></GetPlaces>
+                <GetLocation location={location} setLocation={setLocation} ></GetLocation>
                 <Header sideBar={sideBar} setSideBar={setSideBar}/>
                 <Sidebar places={places} sideBar={sideBar} setSideBar={setSideBar} />
                 <OSMap locations={location} setLocation={setLocation} places={places}/>
