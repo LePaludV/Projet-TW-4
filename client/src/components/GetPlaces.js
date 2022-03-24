@@ -1,10 +1,14 @@
 import React,{useEffect} from 'react';
 import GetLocation from "./GetLocation";
+import L from "leaflet";
 
 
 
-const GetPlaces = () => {
-let places=[]/*
+const GetPlaces = (locations,places) => {
+// let places=props.places
+console.log('Starting filter places');
+
+/*
     useEffect(() => {
         fetch(" /listPlaces")
           .then(res => res.json())
@@ -36,7 +40,7 @@ let places=[]/*
 }
 ];*/
 
-const userLocation=GetLocation().coordinates;
+//const userLocation=GetLocation().coordinates;
 
 //  console.log("userLocation :", userLocation);
 
@@ -47,14 +51,16 @@ const userLocation=GetLocation().coordinates;
 
 
 
-const Rayon=0.5/80//Rayon de 5km doit être modifiable
-
-const estDansLeRayon=(userLocation,x,y,R)=>{
-    return(((x-userLocation.lng)**2 + (y-userLocation.lat)**2)<R**2)
+const Rayon=5//Rayon de 5km doit être modifiable
+console.log(locations)
+const lieuxDansLeRayon =(Rayon,point,lieu)=>{
+var monPoint = L.latLng([point.lat,point.lng]);
+var pointDuLieu=L.latLng([lieu.latitude,lieu.longiture])
+return (monPoint.distanceTo(pointDuLieu) <= Rayon*1000)
 }
 
-const validPlaces= places.filter(e=>estDansLeRayon(userLocation,e.lng,e.latitude,Rayon))
-//console.log(validPlaces);
+const validPlaces= places.filter(e=>lieuxDansLeRayon(Rayon,locations.coordinates,e))
+console.log("Valide places "+validPlaces);
 return validPlaces;
 };
 

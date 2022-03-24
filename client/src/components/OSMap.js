@@ -1,10 +1,11 @@
 import React from "react";
 import {
   MapContainer,
-  TileLayer,
   Marker,
   Popup,
-} from "react-leaflet";
+  TileLayer,
+  useMapEvents,
+} from 'react-leaflet'
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import GetLocation from "./GetLocation.js";
@@ -22,7 +23,9 @@ var IconYou = L.icon({
 
 
 const OSMap = (props) => {
-  const locations = GetLocation(); 
+  const locations = props.locations; 
+  props.setLocation(GetLocation())
+
   
 // PB -> Quand l'user accept pas le temps de prendre en compte avant le chargement du reste  
 
@@ -47,8 +50,10 @@ const OSMap = (props) => {
             <Marker icon={IconYou} position={locations.coordinates}>
               <Popup position={locations.coordinates}> Vous êtes ici </Popup>
             </Marker>
-          )}
-          <Lieux places={props.places} /> 
+          )
+          
+          }
+          <Lieux locations={locations} places={props.places} /> 
           
         </MapContainer>
       </div>

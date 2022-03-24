@@ -9,30 +9,32 @@ var IconPlace = L.icon({
   });
 
 const Lieux = (props) => {
-    return (
-        <div>
-            {props.places.map((place) => (
-            <Marker
-              key={place._id}
-              icon={IconPlace}
-              position={{
-                lat: place.latitude,
-                lng: place.longiture,
-              }}
-            >
-              <Popup
-                position={{
-                  lat: place.latitude,
-                  lng: place.longiture,
-                }}
-              >
-                {" "}
-                {place.titre}{" "}
-              </Popup>
-            </Marker>
-          ))}
-        </div>
-    );
+  
+  return (
+    <div>
+
+      {props.places.map((place) => (
+        <Marker
+          key={place._id}
+          icon={IconPlace}
+          position={{
+            lat: place.latitude,
+            lng: place.longiture,
+          }}
+        >
+          <Popup
+            position={{
+              lat: place.latitude,
+              lng: place.longiture,
+            }}
+          >
+            {" "}
+            {place.titre}{" "}
+          </Popup>
+        </Marker>
+      ))}
+    </div>
+  );
 };
 
 export default Lieux;
