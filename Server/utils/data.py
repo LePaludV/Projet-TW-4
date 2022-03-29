@@ -12,6 +12,11 @@ def parseStr(string):
     string = string.replace("Ã©", "é")
     string = string.replace("Ã¨", "è")
     string = string.replace("Ã´", "ô")
+    string = string.replace("Ã¢", "â")
+    string = string.replace("Ãª", "ê")
+    string = string.replace("Ã®", "î")
+    string = string.replace("Ã»", "û")
+
     string = string.replace("\n", "<br>")
     string = string.replace("\t", "&emsp;")
 
@@ -36,7 +41,7 @@ for t in types:
             file = csv.DictReader(f, delimiter=";")
             for row in file:
                 toAppend = {"titre":        parseStr(row["title"]),
-                             "description": parseStr(row["description"]),
+                            "description": {"fr": parseStr(row["description"])},
                              "categorie":   list(map(parseStr, row["categories"].split("|"))),
                              "address":     parseStr(row["address"]),
                              "longiture":   parseStr(row["longitude"]),
