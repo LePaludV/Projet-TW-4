@@ -1,6 +1,6 @@
 {
-    "fr":["Projet Techno Web","Carte","Itinéraire","Distance des lieux","Liste des lieux"],
-    "en":["Tech Web Project","Map","Itinerary","Distance from places","List of places"],
-    "es":["Proyecto web tecnológico","Mapa","Itinerario","Distancia de lugares","Lista de lugares"],
-    "de":["Tech-Web-Projekt","Karte","Route","Entfernung von Orten","Liste der Orte"]
+    "fr":["Projet Techno Web","Carte","Itinéraire","Distance des lieux","Liste des lieux","Langue","Anglais","Français","Espagnol","Allemand"],
+    "en":["Tech Web Project","Map","Itinerary","Distance from places","List of places","Language","English", "French", "Spanish", "German"],
+    "es":["Proyecto web tecnológico","Mapa","Itinerario","Distancia de lugares","Lista de lugares","Idioma","Inglés", "Francés", "Español", "Alemán"],
+    "de":["Tech-Web-Projekt","Karte","Route","Entfernung von Orten","Liste der Orte","Sprache","Englisch", "Französisch", "Spanisch", "Deutsch"]
 }
