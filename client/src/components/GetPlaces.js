@@ -6,7 +6,7 @@ import L from "leaflet";
 
 const GetPlaces = (props) => {
 // let places=props.places
-console.log('Starting filter places');
+//console.log('Starting filter places');
 
 /*
     useEffect(() => {
@@ -51,8 +51,8 @@ console.log('Starting filter places');
 
 
 
-const Rayon=5//Rayon de 5km doit être modifiable
-console.log(props.location)
+const Rayon=props.rayon//Rayon de 5km doit être modifiable
+//console.log(props.location)
 const lieuxDansLeRayon =(Rayon,point,lieu)=>{
 var monPoint = L.latLng([point.lat,point.lng]);
 var pointDuLieu=L.latLng([lieu.latitude,lieu.longiture])
