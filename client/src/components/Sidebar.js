@@ -5,19 +5,27 @@ const Sidebar = (props) => {
     var w=0;
     if(props.sideBar) w=20;
 
-
-    console.log(props.places);
+    let rayon=props.rayon;
+    //console.log(props.places);
     
   return (
       
       <div className="Sidebar"style={{width:w+"vw"}} >
+        
+
+
         {props.sideBar &&(
           <div className="bar text-light">
+            <label htmlFor="rayon" className="form-label">Distance des lieux : {rayon} km</label>
+            <input type="range" className="form-range" min="0.5" max="10" step="0.5" value={rayon} id="rayon" onChange={(e)=>props.setRayon(e.value)}></input>
+
               <h2>Liste des endroits</h2>
                 <ul>
-                    <li>YO</li>
-                    <li>Lo</li>
-                    <li>al</li>
+                {props.places.map((place) => (
+                  <li key={place._id}>{place.titre}</li>
+                  ))
+                }
+                    
                 </ul>
 
           </div>)}
