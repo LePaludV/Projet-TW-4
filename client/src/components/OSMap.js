@@ -4,12 +4,14 @@ import {
   Marker,
   Popup,
   TileLayer,
+  SVGOverlay ,
 } from 'react-leaflet'
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import UpdateMap from "./UpdateMapLocation";
 import PinYou from "../img/maps-and-flags.png";
 import Lieux from "./Lieux.js"
+import txtLang from "../lang.json"
 
 var IconYou = L.icon({
   iconUrl: PinYou,
@@ -45,12 +47,12 @@ const OSMap = (props) => {
           <UpdateMap locations={locations.coordinates}></UpdateMap>
           {locations.loaded && (
             <Marker icon={IconYou} position={locations.coordinates}>
-              <Popup position={locations.coordinates}> Vous êtes ici </Popup>
+              <Popup position={locations.coordinates}> {txtLang[props.lang][12]} </Popup>
             </Marker>
           )
           
           }
-          <Lieux locations={locations} places={props.places} /> 
+          <Lieux placesSelected={props.placesSelected} setPlacesSelected={props.setPlacesSelected} lang={props.lang} locations={locations} places={props.places} /> 
           
         </MapContainer>
       </div>

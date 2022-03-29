@@ -18,7 +18,7 @@ const Sidebar = (props) => {
         {props.sideBar &&(
           <div className="bar text-light">
             <label htmlFor="rayon" className="form-label">  {txtLang[props.lang][3]} : {rayon} km</label>
-            <input type="range" className="form-range" min="0.5" max="10" step="0.5" value={rayon} id="rayon" onChange={(e)=>props.setRayon(e.value)}></input>
+            <input type="range" className="form-range" min="0.5" max="10" step="0.5" value={rayon} id="rayon" onChange={(e)=>props.setRayon(e.target.value)}></input>
 
               <h2>  {txtLang[props.lang][4]}</h2>
                 <ul>

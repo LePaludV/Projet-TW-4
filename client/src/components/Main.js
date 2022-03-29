@@ -8,8 +8,11 @@ import GetLocation from './GetLocation';
 
 const Main = (props) => {
     const [sideBar, setSideBar] = useState(false)
+    const [barItineraire, setBarItineraire] = useState(false)
+    const [placesSelected,setPlacesSelected]=useState([])
     const [location, setLocation] = useState({coordinates:{lat:43.927,lng:2.14}, loaded:false});
     const [places, setPlaces] = useState([]);
+    const [AllPlaces, setAllPlaces] = useState([]);
     const [rayon, setRayon] = useState(10);
     
     useEffect(() => {
@@ -17,22 +20,29 @@ const Main = (props) => {
         .then(res => res.json())
         .then(
           (result) => {
-            setPlaces(result);
+            setAllPlaces(result);
           },
           (error) => {console.log(error);
           }
         )
     }, []);
     
+    useEffect(() => {
+      console.log(placesSelected);
+    
+    
+    }, [placesSelected])
+    
+
     return (
         <div className="Main row">
-                <GetPlaces rayon={rayon} location={location} places={places} setPlaces={setPlaces}></GetPlaces>
-                <GetLocation location={location} setLocation={setLocation} ></GetLocation>
-                <Header lang={props.lang} setLang={props.setLang} sideBar={sideBar} setSideBar={setSideBar}/>
-                <Sidebar lang={props.lang} rayon={rayon} setRayon={setRayon} places={places} sideBar={sideBar} setSideBar={setSideBar} />
-                <OSMap locations={location} setLocation={setLocation} places={places}/>
-                <Itineraire/>
-            
+                <GetPlaces AllPlaces={AllPlaces} rayon={rayon} location={location} places={places} setPlaces={setPlaces}/>
+                <GetLocation location={location} setLocation={setLocation} />
+                <Header barItineraire={barItineraire} setBarItineraire={setBarItineraire} lang={props.lang} setLang={props.setLang} sideBar={sideBar} setSideBar={setSideBar}/>
+                {sideBar ? <Sidebar lang={props.lang} rayon={rayon} setRayon={setRayon} places={places} sideBar={sideBar} setSideBar={setSideBar} /> :null}
+                <OSMap placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} locations={location} setLocation={setLocation} places={places}/>
+               {barItineraire ?<Itineraire barItineraire={barItineraire} setBarItineraire={setBarItineraire} placesSelected={placesSelected} lang={props.lang} /> :null} 
+                
         </div>
     );
 };
