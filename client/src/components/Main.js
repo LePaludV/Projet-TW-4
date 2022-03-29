@@ -28,8 +28,8 @@ const Main = (props) => {
         <div className="Main row">
                 <GetPlaces rayon={rayon} location={location} places={places} setPlaces={setPlaces}></GetPlaces>
                 <GetLocation location={location} setLocation={setLocation} ></GetLocation>
-                <Header sideBar={sideBar} setSideBar={setSideBar}/>
-                <Sidebar rayon={rayon} setRayon={setRayon} places={places} sideBar={sideBar} setSideBar={setSideBar} />
+                <Header lang={props.lang} setLang={props.setLang} sideBar={sideBar} setSideBar={setSideBar}/>
+                <Sidebar lang={props.lang} rayon={rayon} setRayon={setRayon} places={places} sideBar={sideBar} setSideBar={setSideBar} />
                 <OSMap locations={location} setLocation={setLocation} places={places}/>
                 <Itineraire/>
             

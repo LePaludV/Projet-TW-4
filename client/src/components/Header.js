@@ -1,13 +1,15 @@
 import React from 'react';
+import txtLang from "../lang.json"
 
-const Header = ({sideBar,setSideBar}) => {
+const Header = (props) => {
     return (
       <div className="Header">
         <nav className="navbar navbar-expand-lg navbar-light bg-dark">
           <div className="container-fluid">
             <h2 className="text-light">
-              Titre App
-              <button className="btn btn-lg text-light" onClick={() => setSideBar(!sideBar)}>
+              
+              {txtLang[props.lang][0]}
+              <button className="btn btn-lg text-light" onClick={() => props.setSideBar(!props.sideBar)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -23,10 +25,13 @@ const Header = ({sideBar,setSideBar}) => {
                 </svg>
               </button>
             </h2>
-            <a className="text-light">Map</a>
+            <a className="text-light">{txtLang[props.lang][1]}</a>
             <a className="text-light" href="#Itineraire">
-              Intineraire
+            {txtLang[props.lang][2]}
             </a>
+
+       
+
           </div>
         </nav>
       </div>
