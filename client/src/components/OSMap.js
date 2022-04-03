@@ -52,7 +52,7 @@ const OSMap = (props) => {
           )
           
           }
-          <Lieux placesSelected={props.placesSelected} setPlacesSelected={props.setPlacesSelected} lang={props.lang} locations={locations} places={props.places} /> 
+          <Lieux barItineraire={props.barItineraire} setBarItineraire={props.setBarItineraire} placesSelected={props.placesSelected} setPlacesSelected={props.setPlacesSelected} lang={props.lang} locations={locations} places={props.places} /> 
           
         </MapContainer>
       </div>

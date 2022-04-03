@@ -27,21 +27,17 @@ const Main = (props) => {
         )
     }, []);
     
-    useEffect(() => {
-      console.log(placesSelected);
-    
-    
-    }, [placesSelected])
-    
+
+ 
 
     return (
         <div className="Main row">
                 <GetPlaces AllPlaces={AllPlaces} rayon={rayon} location={location} places={places} setPlaces={setPlaces}/>
                 <GetLocation location={location} setLocation={setLocation} />
                 <Header barItineraire={barItineraire} setBarItineraire={setBarItineraire} lang={props.lang} setLang={props.setLang} sideBar={sideBar} setSideBar={setSideBar}/>
-                {sideBar ? <Sidebar lang={props.lang} rayon={rayon} setRayon={setRayon} places={places} sideBar={sideBar} setSideBar={setSideBar} /> :null}
-                <OSMap placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} locations={location} setLocation={setLocation} places={places}/>
-               {barItineraire ?<Itineraire barItineraire={barItineraire} setBarItineraire={setBarItineraire} placesSelected={placesSelected} lang={props.lang} /> :null} 
+                {sideBar ? <Sidebar lang={props.lang} rayon={rayon} setRayon={setRayon} places={places} /> :null}
+                <OSMap barItineraire={barItineraire} setBarItineraire={setBarItineraire} placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} locations={location} setLocation={setLocation} places={places}/>
+               {barItineraire ?<Itineraire placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} /> :null} 
                 
         </div>
     );

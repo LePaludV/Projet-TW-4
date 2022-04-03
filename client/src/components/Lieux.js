@@ -36,13 +36,18 @@ const Lieux = (props) => {
             <br></br>
             <div className="btn-group">
             <button className='btn btn-primary btn-sm' onClick={() =>{console.log(place.description[props.lang])} }>{txtLang[props.lang][10]}</button>
-            <button className='btn btn-primary btn-sm' onClick={()=>{
+            <button className='btn btn-primary btn-sm' onClick={(e)=>{
               var tmp=props.placesSelected
+              props.setBarItineraire(true)
               
-              if(!tmp.includes(place)) tmp.push(place)
+              if(!tmp.includes(place)){
+          
+                props.setPlacesSelected(tmp.concat([place]))
+                console.log("ygjhzkef");
+              } 
 
 
-              props.setPlacesSelected(tmp)
+              
             } }>{txtLang[props.lang][11]}</button>
             </div>
             </div>
