@@ -12,7 +12,7 @@ const Main = (props) => {
     const [places, setPlaces] = useState([]);
     const [rayon, setRayon] = useState(10);
     
-    useEffect(() => {
+    /*useEffect(() => {
       fetch(" /listPlaces")
         .then(res => res.json())
         .then(
@@ -22,7 +22,7 @@ const Main = (props) => {
           (error) => {console.log(error);
           }
         )
-    }, []);
+    }, []);*/
     
     return (
         <div className="Main row">

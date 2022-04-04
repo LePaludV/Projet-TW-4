@@ -4,6 +4,7 @@ import {
   Marker,
   Popup,
   TileLayer,
+  Polyline
 } from 'react-leaflet'
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -51,7 +52,6 @@ const OSMap = (props) => {
           
           }
           <Lieux locations={locations} places={props.places} /> 
-          
         </MapContainer>
       </div>
     </div>

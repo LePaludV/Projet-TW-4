@@ -1,8 +1,12 @@
 const express = require("express")
 const app = express();
-const http = require("http").createServer(app);
+const http = require("http");
+const server = http.createServer(app);
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const io = require('socket.io')(http);
+app.use(express.json());
+var polyline = require("@mapbox/polyline");
+
 
 var players = new Set()
 
@@ -35,7 +39,28 @@ app.get("/listPlaces", async(req, res) => {
   res.json(places);
 });
 
-http.listen(3001, () => {
+app.post("/getRoute", (req, res) => {
+  empl1 = req.body[0];
+  empl2 = req.body[1];
+  console.log(empl1, empl2);
+
+  http.get(`http://router.project-osrm.org/route/v1/foot/${empl1[0]},${empl1[1]};${empl2[0]},${empl2[1]}?overview=simplified&geometries=polyline`, resp => {
+    data = "";
+
+    resp.on("data", chunk => {
+      data += chunk
+    });
+
+    resp.on("end", () => {
+      geometry = JSON.parse(data).routes[0].geometry;
+      res.json(polyline.decode(geometry));
+    });
+  });
+
+  //res.json({"nope": "nope"});
+});
+
+server.listen(3001, () => {
   console.log("listening on *:3001");
 });
 
