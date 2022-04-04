@@ -59,11 +59,11 @@ var pointDuLieu=L.latLng([lieu.latitude,lieu.longiture])
 return (monPoint.distanceTo(pointDuLieu) <= Rayon*1000)
 }
 useEffect(() => {
-    const validPlaces= props.places.filter(e=>lieuxDansLeRayon(Rayon,props.location.coordinates,e))
+    const validPlaces= props.AllPlaces.filter(e=>lieuxDansLeRayon(Rayon,props.location.coordinates,e))
     console.log("Valide places "+validPlaces);
     props.setPlaces(validPlaces);
  
-}, [])
+}, [props.rayon])
 
 
 return (null);

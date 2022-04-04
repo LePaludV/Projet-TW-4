@@ -1,9 +1,13 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 
-const Itineraire = () => {
+const Itineraire = (props) => {   
     return (
-        <div className='Itineraire' id='Itineraire'>
-            <p>hello</p>
+        <div className='Itineraire text-light' id='Itineraire' style={{width:20+"vw"}}>
+            {(
+             props.placesSelected.map((place) => (
+                 <p key={place._id} >{place.titre}</p>
+             ))
+             )}
         </div>
     );
 };
