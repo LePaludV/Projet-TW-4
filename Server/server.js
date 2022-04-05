@@ -69,15 +69,29 @@ app.get("/listPlaces", async(req, res) => {
   res.json(places);
 });
 
-app.post("/create", async(req, res) => {
-  username = req.body["name"];
-  token = await generateUserToken();
-
+async function alreadyExist(username) {
   db = client.db("TW4");
   collec = db.collection("user");
-  ins = await collec.insertOne({"username": username, "token": token, "trips": []})
-  console.log(ins);
-  res.json({"token": token});
+  res = await collec.find({"username": username});
+  console.log(res);
+  // TODO: Tester
+  return false;
+}
+
+app.post("/create", async(req, res) => {
+  username = req.body["name"];
+  if await alreadyExist(username) {
+    res.statusCode = 404;
+    res.send("User already exist");
+  } else {
+    token = await generateUserToken();
+
+    db = client.db("TW4");
+    collec = db.collection("user");
+    ins = await collec.insertOne({"username": username, "token": token, "trips": []})
+    console.log(ins);
+    res.json({"token": token});
+  }
 });
 
 app.post("/getRoute", (req, res) => {
