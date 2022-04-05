@@ -50,7 +50,7 @@ function generateUserToken() {
     randomBytes(4, (err, buf) => console.log(buf.toString('hex')));
   }, 2000);
 }
-generateUserToken();
+//generateUserToken();
 
 app.get("/test", async (req, res) => {
   res.json({"ca marche": "oui"});
