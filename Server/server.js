@@ -1,9 +1,9 @@
 const express = require("express")
 const app = express();
-const http = require("http");
+const http = require("http")
 const server = http.createServer(app);
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const io = require('socket.io')(http);
+const io = require('socket.io')(server);
 app.use(express.json());
 var polyline = require("@mapbox/polyline");
 
@@ -12,7 +12,7 @@ const TOKEN_SIZE = 8;
 var players = new Set()
 
 app.get("/", (req, res) => {
-	res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/index.html");
 });
 
 const uri = "mongodb+srv://Projet-TW-4:DkTLkWo7BXmN1Ua@cluster0.lbkjq.mongodb.net/TW4?retryWrites=true&w=majority";
@@ -52,7 +52,6 @@ function newPassword(alreadyUsed) {
 
   return pass;
 }
-//console.log(newPassword(["54515efezfe"]));
 
 async function generateUserToken() {
   db = client.db("TW4");
@@ -60,16 +59,6 @@ async function generateUserToken() {
   res = await collec.find({}).toArray();
   return newPassword(res.map(e => e.token))
 }
-
-app.get("/test", async (req, res) => {
-  res.json({"ca marche": "oui"});
-
-  db = client.db("TW4");
-  collec = db.collection("test");
-  collec.insertMany([{"a": 3, "b": 4}]).then((ins) => {
-    console.log(ins);
-  });
-});
 
 app.get("/listPlaces", async(req, res) => {
   db = client.db("TW4");
@@ -89,7 +78,7 @@ app.post("/create", async(req, res) => {
   ins = await collec.insertOne({"username": username, "token": token, "trips": []})
   console.log(ins);
   res.json({"token": token});
-})
+});
 
 app.post("/getRoute", (req, res) => {
   empl1 = req.body[0];
@@ -107,8 +96,8 @@ app.post("/getRoute", (req, res) => {
       geometry = JSON.parse(data).routes[0].geometry;
       res.json(polyline.decode(geometry));
     });
-  });
 
+  })
   //res.json({"nope": "nope"});
 });
 
@@ -126,27 +115,28 @@ function getCompleteRoute(L, startPoint, callback) {
     callback(polyline.decode(geometry));
   });
 }
-
 //getCompleteRoute([[2.1484799385071, 43.925579071045], [2.1436800956726, 43.929229736328]], [2.14513, 43.92274], res => console.log(res));
-
+  
 server.listen(3001, () => {
   console.log("listening on *:3001");
 });
 
 io.on("connection", (socket) => {
-	if (players.size < 2) {
-		players.add(socket.id);
-		console.log("Someone joinned: " + (players.size).toString() + " player(s)");
+  if (players.size < 2) {
+    players.add(socket.id);
+    console.log("Someone joinned: " + (players.size).toString() + " player(s)");
 
-		socket.on("test", (arg) => {
-			io.emit("pressed", data=[socket.id, arg]);
-		});
-	};
+    socket.on("test", (arg) => {
+      io.emit("pressed", data=[socket.id, arg]);
+    });
+  };
 
-	socket.on("disconnect", (socket) => {		
-		players.delete(socket.id);
-		console.log("Someone left: " + (players.size).toString() + " player(s)");
-	})
-});
-
+  socket.on("disconnect", (socket) => {
+    players.delete(socket.id);
+    console.log("Someone left: " + (players.size).toString() + " player(s)");
+  });
+  socket.on("Itineraire",(obj)=>{
+    console.log(obj);
+  });
+})
 // TODO: AJouter les joueurs dans un JSON pour les déconnections

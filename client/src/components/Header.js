@@ -1,6 +1,7 @@
 import React from 'react';
 import txtLang from "../lang.json"
 import {Dropdown} from 'bootstrap'
+import Connexion from './Connexion';
 
 const Header = (props) => {
   var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
@@ -32,6 +33,7 @@ var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
               </button>
             </h2>
             <a className="text-light">{txtLang[props.lang][1]}</a>
+            <Connexion user={props.user} setUser={props.setUser}/>
             <a className="text-light"  onClick={() => props.setBarItineraire(!props.barItineraire)}>
             {txtLang[props.lang][2]}
             </a>

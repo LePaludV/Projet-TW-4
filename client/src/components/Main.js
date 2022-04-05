@@ -14,8 +14,9 @@ const Main = (props) => {
     const [places, setPlaces] = useState([]);
     const [AllPlaces, setAllPlaces] = useState([]);
     const [rayon, setRayon] = useState(10);
-    
-    /*useEffect(() => {
+    const [user, setUser] = useState({name:localStorage.getItem('name'),token:localStorage.getItem('token')})
+
+    useEffect(() => {
       fetch(" /listPlaces")
         .then(res => res.json())
         .then(
@@ -25,7 +26,7 @@ const Main = (props) => {
           (error) => {console.log(error);
           }
         )
-    }, []);*/
+    }, []);
     
 
  
@@ -34,10 +35,10 @@ const Main = (props) => {
         <div className="Main row">
                 <GetPlaces AllPlaces={AllPlaces} rayon={rayon} setRayon={setRayon} location={location} places={places} setPlaces={setPlaces}/>
                 <GetLocation location={location} setLocation={setLocation} />
-                <Header barItineraire={barItineraire} setBarItineraire={setBarItineraire} lang={props.lang} setLang={props.setLang} sideBar={sideBar} setSideBar={setSideBar}/>
+                <Header user={user} setUser={setUser} barItineraire={barItineraire} setBarItineraire={setBarItineraire} lang={props.lang} setLang={props.setLang} sideBar={sideBar} setSideBar={setSideBar}/>
                 {sideBar ? <Sidebar placesSelected={placesSelected} setPlacesSelected={setPlacesSelected}  lang={props.lang} rayon={rayon} setRayon={setRayon} places={places} /> :null}
                 <OSMap barItineraire={barItineraire} setBarItineraire={setBarItineraire} placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} locations={location} setLocation={setLocation} places={places}/>
-               {barItineraire ?<Itineraire placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} /> :null} 
+               {barItineraire ?<Itineraire  user={user} setUser={setUser} placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} /> :null} 
                 
         </div>
     );
