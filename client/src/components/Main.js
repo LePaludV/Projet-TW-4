@@ -16,7 +16,7 @@ const Main = (props) => {
     const [rayon, setRayon] = useState(10);
     const [user, setUser] = useState({name:localStorage.getItem('name'),token:localStorage.getItem('token')})
     
-    useEffect(() => {
+    /*useEffect(() => {
       fetch(" /listPlaces")
         .then(res => res.json())
         .then(
@@ -26,7 +26,7 @@ const Main = (props) => {
           (error) => {console.log(error);
           }
         )
-    }, []);
+    }, []);*/
     
 
  

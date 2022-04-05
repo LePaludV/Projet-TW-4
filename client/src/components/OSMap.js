@@ -4,7 +4,8 @@ import {
   Marker,
   Popup,
   TileLayer,
-  SVGOverlay ,
+  SVGOverlay,
+  Polyline,
 } from 'react-leaflet'
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -52,6 +53,7 @@ const OSMap = (props) => {
           )
           
           }
+          <Lieux locations={locations} places={props.places} /> 
           <Lieux barItineraire={props.barItineraire} setBarItineraire={props.setBarItineraire} placesSelected={props.placesSelected} setPlacesSelected={props.setPlacesSelected} lang={props.lang} locations={locations} places={props.places} /> 
           
         </MapContainer>
