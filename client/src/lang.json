@@ -1,6 +1,6 @@
 {
-    "fr":["Projet Techno Web","Carte","Itinéraire","Distance des lieux","Liste des lieux","Langue","Anglais","Français","Espagnol","Allemand","En savoir plus","Ajouter au trajet","Vous êtes ici "],
-    "en":["Tech Web Project","Map","Itinerary","Distance from places","List of places","Language","English", "French", "Spanish", "German","Learn more","Add to route","You are here"],
-    "es":["Proyecto web tecnológico","Mapa","Itinerario","Distancia de lugares","Lista de lugares","Idioma","Inglés", "Francés", "Español", "Alemán","Más información","Añadir al viaje","Usted está aquí"],
-    "de":["Tech-Web-Projekt","Karte","Route","Entfernung von Orten","Liste der Orte","Sprache","Englisch", "Französisch", "Spanisch", "Deutsch","Mehr wissen","Der Fahrt hinzufügen","Sie hier sind"]
+    "fr":["Projet Techno Web","Carte","Itinéraire","Distance des lieux","Liste des lieux","Langue","Anglais","Français","Espagnol","Allemand","En savoir plus","Ajouter au trajet","Vous êtes ici","Obtenir l'itinéraire","Merci d'ajouter au moins un endroit"],
+    "en":["Tech Web Project","Map","Itinerary","Distance from places","List of places","Language","English", "French", "Spanish", "German","Learn more","Add to route","You are here","Get directions","Please add at least one place"],
+    "es":["Proyecto web tecnológico","Mapa","Itinerario","Distancia de lugares","Lista de lugares","Idioma","Inglés", "Francés", "Español", "Alemán","Más información","Añadir al viaje","Usted está aquí","Obtener las direcciones","Agrega al menos un lugar"],
+    "de":["Tech-Web-Projekt","Karte","Route","Entfernung von Orten","Liste der Orte","Sprache","Englisch", "Französisch", "Spanisch", "Deutsch","Mehr wissen","Der Fahrt hinzufügen","Sie hier sind","Anweisungen bekommen","Bitte fügen Sie mindestens einen Ort hinzu"]
 }

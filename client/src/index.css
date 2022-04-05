@@ -17,6 +17,9 @@ code {
   z-index: 1;
 }
 
-
+.ReactModal__Content{
+  width: 75vw;
+  inset: 2em 0em 0em 11vw !important;
+}
 
 
