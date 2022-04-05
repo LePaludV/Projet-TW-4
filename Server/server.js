@@ -137,10 +137,7 @@ io.on("connection", (socket) => {
 	socket.on("disconnect", (socket) => {		
 		players.delete(socket.id);
 		console.log("Someone left: " + (players.size).toString() + " player(s)");
-	});
-	socket.on("Itineraire",(obj)=>{
-		console.log(obj);
-	});
+	})
 });
 
 // TODO: AJouter les joueurs dans un JSON pour les déconnections

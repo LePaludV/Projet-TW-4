@@ -13,9 +13,3 @@ collection "user":
     - username    string
     - token       string
     - trips       list[trip]
-
-
-collection "avis":
-    -id-lieu	string
-    -username    string
-    -commentaire	string
