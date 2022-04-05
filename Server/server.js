@@ -7,6 +7,7 @@ const io = require('socket.io')(http);
 app.use(express.json());
 var polyline = require("@mapbox/polyline");
 
+const TOKEN_SIZE = 8;
 
 var players = new Set()
 
@@ -34,23 +35,31 @@ function httpRequest(URL, callback) {
   });
 }
 
-function password() {
+function newPassword(alreadyUsed) {
   /*alpha = "abcdefghijklmnopqrstuvwxyz";
   elements = alpha.split("").concat(alpha.toUpperCase().split(""));*/
   elements = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&'()*+,;=".split("");
-  console.log(elements);
-}
-//password();
 
-function generateUserToken() {
-  setTimeout(() => {
-    /*db = client.db("TW4");
-    collec = db.collection("user");
-    collec.find({}).toArray().then(res => console.log(res));*/
-    randomBytes(4, (err, buf) => console.log(buf.toString('hex')));
-  }, 2000);
+  pass = "";
+
+  do {
+    pass = "";
+
+    for (i = 0; i < TOKEN_SIZE; i++) {
+      pass += elements[Math.floor(Math.random()*elements.length)];
+    }
+  } while (alreadyUsed.includes(pass));
+
+  return pass;
 }
-//generateUserToken();
+//console.log(newPassword(["54515efezfe"]));
+
+async function generateUserToken() {
+  db = client.db("TW4");
+  collec = db.collection("user");
+  res = await collec.find({}).toArray();
+  return newPassword(res.map(e => e.token))
+}
 
 app.get("/test", async (req, res) => {
   res.json({"ca marche": "oui"});
@@ -71,15 +80,15 @@ app.get("/listPlaces", async(req, res) => {
   res.json(places);
 });
 
-app.post("/create", (req, res) => {
+app.post("/create", async(req, res) => {
   username = req.body["name"];
-  token = generateUserToken();
+  token = await generateUserToken();
 
   db = client.db("TW4");
   collec = db.collection("user");
-  collec.insertMany({"username": username, "token": token, "trips": []}).then(ins => {
-    console.log(ins);
-  });
+  ins = await collec.insertOne({"username": username, "token": token, "trips": []})
+  console.log(ins);
+  res.json({"token": token});
 })
 
 app.post("/getRoute", (req, res) => {
