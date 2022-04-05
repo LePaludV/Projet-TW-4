@@ -12,6 +12,7 @@ const TOKEN_SIZE = 8;
 const BASE_URL = "http://localhost:3000";
 
 var players = new Set()
+var plays = 0
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
