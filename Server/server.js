@@ -20,6 +20,38 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect();
 
 
+function httpRequest(URL, callback) {
+  http.get(URL, resp => {
+    data = "";
+
+    resp.on("data", chunk => {
+      data += chunk
+    });
+
+    resp.on("end", () => {
+      callback(data);
+    });
+  });
+}
+
+function password() {
+  /*alpha = "abcdefghijklmnopqrstuvwxyz";
+  elements = alpha.split("").concat(alpha.toUpperCase().split(""));*/
+  elements = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&'()*+,;=".split("");
+  console.log(elements);
+}
+//password();
+
+function generateUserToken() {
+  setTimeout(() => {
+    /*db = client.db("TW4");
+    collec = db.collection("user");
+    collec.find({}).toArray().then(res => console.log(res));*/
+    randomBytes(4, (err, buf) => console.log(buf.toString('hex')));
+  }, 2000);
+}
+generateUserToken();
+
 app.get("/test", async (req, res) => {
   res.json({"ca marche": "oui"});
 
@@ -38,6 +70,17 @@ app.get("/listPlaces", async(req, res) => {
 
   res.json(places);
 });
+
+app.post("/create", (req, res) => {
+  username = req.body["name"];
+  token = generateUserToken();
+
+  db = client.db("TW4");
+  collec = db.collection("user");
+  collec.insertMany({"username": username, "token": token, "trips": []}).then(ins => {
+    console.log(ins);
+  });
+})
 
 app.post("/getRoute", (req, res) => {
   empl1 = req.body[0];
@@ -59,6 +102,23 @@ app.post("/getRoute", (req, res) => {
 
   //res.json({"nope": "nope"});
 });
+
+function getCompleteRoute(L, startPoint, callback) {
+  L = [startPoint].concat(L);
+  points = "";
+  for (p of L) {
+    points += p[0].toString() + "," + p[1].toString();
+    points += ";"
+  }
+  points = points.substring(0, points.length-1);
+
+  httpRequest(`http://router.project-osrm.org/trip/v1/foot/${points}?source=first&geometries=polyline`, data => {
+    geometry = JSON.parse(data).trips[0].geometry;
+    callback(polyline.decode(geometry));
+  });
+}
+
+//getCompleteRoute([[2.1484799385071, 43.925579071045], [2.1436800956726, 43.929229736328]], [2.14513, 43.92274], res => console.log(res));
 
 server.listen(3001, () => {
   console.log("listening on *:3001");
