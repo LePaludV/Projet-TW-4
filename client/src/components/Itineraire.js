@@ -1,5 +1,6 @@
 import React,{useEffect} from 'react';
 import txtLang from "../lang.json";
+import { sendIntineraire } from './socketio.service';
 const Itineraire = (props) => {   
     const supprPlace = (e)=>{
         //console.log(e);
@@ -7,19 +8,13 @@ const Itineraire = (props) => {
         props.setPlacesSelected(tmp);
     }
     const sendItinerary = () => {
+      var places = []
+      props.placesSelected.map((e)=>(
+        places.push([e.longiture,e.latitude])
+      ))
+
+      sendIntineraire({token:props.user.token,location:props.location,Itineraire:places})
         
-        fetch("url",{
-            method:'POST',
-            body:JSON.stringify(props.placesSelected)
-        })
-        .then(res => res.json())
-        .then(
-          (result) => {
-            props.setItinary(result);
-          },
-          (error) => {console.log(error);
-          }
-        )
     }
     return (
         <div className='Itineraire text-light ' id='Itineraire' style={{width:20+"vw"}}>
