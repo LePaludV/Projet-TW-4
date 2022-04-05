@@ -13,7 +13,6 @@ var IconPlace = L.icon({
   });
 
 const Lieux = (props) => {
-  console.log(props);
   Modal.setAppElement('#App');
   //console.log("Liste des lieux a afficher",props.places);
   const [isModalOpen, setIsModalOpen] = useState(false)

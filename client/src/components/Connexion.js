@@ -8,7 +8,8 @@ const sendName=(e)=>{
    
     fetch("/create",{
         method:'POST',
-    body:({name:username}).json})
+        body:JSON.stringify({name:username})
+})
     .then(res => res.json())
     .then(
       (result) => {
