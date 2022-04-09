@@ -69,7 +69,7 @@ const Lieux = (props) => {
         </Marker>
         
       ))}
-     <Modal isOpen={isModalOpen} onRequestClose={closeModal}  shouldCloseOnOverlayClick={true} ><ModalInfo lang={props.lang} place={placeToShow} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/></Modal>
+     <Modal isOpen={isModalOpen} onRequestClose={closeModal}  shouldCloseOnOverlayClick={true} ><ModalInfo user={props.user} lang={props.lang} place={placeToShow} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/></Modal>
     </div>
   );
 };

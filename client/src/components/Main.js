@@ -37,7 +37,7 @@ const Main = (props) => {
                 <GetLocation location={location} setLocation={setLocation} />
                 <Header user={user} setUser={setUser} barItineraire={barItineraire} setBarItineraire={setBarItineraire} lang={props.lang} setLang={props.setLang} sideBar={sideBar} setSideBar={setSideBar}/>
                 {sideBar ? <Sidebar placesSelected={placesSelected} setPlacesSelected={setPlacesSelected}  lang={props.lang} rayon={rayon} setRayon={setRayon} places={places} /> :null}
-                <OSMap barItineraire={barItineraire} setBarItineraire={setBarItineraire} placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} locations={location} setLocation={setLocation} places={places}/>
+                <OSMap user={user} barItineraire={barItineraire} setBarItineraire={setBarItineraire} placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} locations={location} setLocation={setLocation} places={places}/>
                {barItineraire ?<Itineraire  user={user} setUser={setUser} placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} /> :null} 
                 
         </div>

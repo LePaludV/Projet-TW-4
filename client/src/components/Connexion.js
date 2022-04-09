@@ -4,11 +4,16 @@ const Connexion = (props) => {
 const sendName=(e)=>{
     e.preventDefault()
     var username=e.target[0].value
+  
 
    
     fetch("/create",{
         method:'POST',
-        body:JSON.stringify({name:username})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        body:JSON.stringify({"name":username})
 })
     .then(res => res.json())
     .then(
@@ -18,6 +23,8 @@ const sendName=(e)=>{
       },
       (error) => {console.log(error);
       }
+    ).then(
+        console.log(props.user)
     )
 
 }

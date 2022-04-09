@@ -70,9 +70,9 @@ app.get("/listPlaces", async(req, res) => {
 });
 
 -app.post("/create", (req, res) => {
+	
 	username = req.body["name"];
 	token = generateUserToken();
-  
 	db = client.db("TW4");
 	collec = db.collection("user");
 	collec.insertMany({"username": username, "token": token, "trips": []}).then(ins => {
