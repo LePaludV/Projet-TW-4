@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import AjoutAvis from './AjoutAvis'
 import ListAvis from './ListAvis';
 
@@ -6,22 +6,29 @@ const ModalInfo = (props) => {
   const [avis, setAvis] = useState([])
 
   //On récupèrle les avis d'un lieux 
-      fetch("/getAvis",{
-        method:'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body:JSON.stringify({"id":props.place._id})
-    })
-    .then(res => res.json())
-    .then(
-      (result) => {
-        setAvis(result)
+
+  useEffect(() => {
+    fetch("/getAvis",{
+      method:'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       },
-      (error) => {console.log(error);
-      }
-    )
+      body:JSON.stringify({"id":props.place._id})
+  })
+  .then(res => res.json())
+  .then(
+    (result) => {
+      setAvis(result)
+    },
+    (error) => {console.log(error);
+    }
+  )
+  
+   
+  }, [])
+  
+     
 
 
 
