@@ -6,8 +6,10 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const io = require('socket.io')(server);
 app.use(express.json());
 var polyline = require("@mapbox/polyline");
+var QRCode = require('qrcode');
 
 const TOKEN_SIZE = 8;
+const BASE_URL = "http://localhost:3000";
 
 var players = new Set()
 
@@ -72,15 +74,13 @@ app.get("/listPlaces", async(req, res) => {
 async function alreadyExist(username) {
   db = client.db("TW4");
   collec = db.collection("user");
-  res = await collec.find({"username": username});
-  console.log(res);
-  // TODO: Tester
-  return false;
+  res = await collec.find({"username": username}).toArray();
+  return res.length != 0;
 }
 
 app.post("/create", async(req, res) => {
   username = req.body["name"];
-  if await alreadyExist(username) {
+  if (await alreadyExist(username)) {
     res.statusCode = 404;
     res.send("User already exist");
   } else {
@@ -88,10 +88,35 @@ app.post("/create", async(req, res) => {
 
     db = client.db("TW4");
     collec = db.collection("user");
-    ins = await collec.insertOne({"username": username, "token": token, "trips": []})
-    console.log(ins);
+    ins = await collec.insertOne({"username": username, "token": token, "trips": []});
     res.json({"token": token});
   }
+});
+
+app.post("/getUserInfo", async(req, res) => {
+  token = req.body["token"];
+
+  db = client.db("TW4");
+  collec = db.collection("user");
+  user_infos = await collec.find({token: token}).toArray();
+  res.json(user_infos);
+});
+
+app.get("/conn/:token", async(req, res) => {
+  // TODO: connection de l'utilisateur
+  res.send(req.params.token);
+});
+
+app.get("/qrcode/:token", async(req, res) => {
+  base64 = await QRCode.toDataURL(BASE_URL + "/conn/" + req.params.token);
+  im = base64.split(",")[1];
+  img = Buffer.from(im, "base64");
+
+  res.writeHead(200, {
+    "Content-Type": "image/png",
+    "Content-Length": img.length
+  });
+  res.end(img);
 });
 
 app.post("/getRoute", (req, res) => {
@@ -113,6 +138,31 @@ app.post("/getRoute", (req, res) => {
 
   })
   //res.json({"nope": "nope"});
+});
+
+async function listAvis(id_lieu) {
+  db = client.db("TW4");
+  collec = db.collection("avis");
+  return await collec.find({id_lieu: id_lieu}).toArray();
+}
+
+app.post("/getAvis", async(req, res) => {
+  id = req.body["id"];
+  avis = await listAvis(id);
+  console.log(avis);
+  res.json(avis);
+});
+
+app.post("/addAvis", async(req, res) => {
+  id = req.body["id"];
+  avis = req.body["avis"];
+
+  db = client.db("TW4");
+  collec = db.collection("avis");
+  await collec.insertOne({id_lieu: id, avis: avis});
+  avis = await listAvis(id);
+
+  res.json(avis);
 });
 
 function getCompleteRoute(L, startPoint, callback) {
