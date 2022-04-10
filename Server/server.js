@@ -148,15 +148,16 @@ async function listAvis(id_lieu) {
 
 app.post("/getAvis", async(req, res) => {
   id = req.body["id"];
+  
   avis = await listAvis(id);
-  console.log(avis);
+  console.log("avis du lieux "+id+" -> "+avis);
   res.json(avis);
 });
 
 app.post("/addAvis", async(req, res) => {
   id = req.body["id"];
   avis = req.body["avis"];
-
+  console.log(avis);
   db = client.db("TW4");
   collec = db.collection("avis");
   await collec.insertOne({id_lieu: id, avis: avis});

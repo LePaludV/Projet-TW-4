@@ -19,7 +19,8 @@ const sendName=(e)=>{
     .then(
       (result) => {
         props.setUser({name:username,token:result})
-        localStorage.setItem({name:username,token:result});
+        localStorage.setItem("name",username)
+        localStorage.setItem("token",result)
       },
       (error) => {console.log(error);
       }
