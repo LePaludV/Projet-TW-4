@@ -103,8 +103,7 @@ app.post("/getUserInfo", async(req, res) => {
 });
 
 app.get("/conn/:token", async(req, res) => {
-  // TODO: connection de l'utilisateur
-  res.send(req.params.token);
+  res.sendFile(__dirname + "/static/connection.html");
 });
 
 app.get("/qrcode/:token", async(req, res) => {
