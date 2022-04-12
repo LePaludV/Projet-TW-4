@@ -2,7 +2,8 @@ import React,{useState} from 'react';
 
 const Connexion = (props) => {
     const [logUser, setLogUser] = useState(null)
-    console.log(props.user.token);
+   
+    //console.log((props.user.token));
 
 const sendName=(e)=>{
     e.preventDefault()
@@ -14,9 +15,10 @@ const sendName=(e)=>{
     .then(res => res.json())
     .then(
       (result) => {
-        props.setUser({name:username,token:result})
+        var token =result.token
+        props.setUser({name:username,token:token})
         localStorage.setItem("name",username)
-        localStorage.setItem("token",result)
+        localStorage.setItem("token",token)
       },
       (error) => {console.log(error);
       }
@@ -29,6 +31,7 @@ const sendName=(e)=>{
 const sendToken=(e)=>{
     e.preventDefault()
     var token=e.target[0].value
+    console.log("le token envoyé : "+token);
     fetch("/getUserInfo ",{
         method:'POST',
         headers: {'Accept': 'application/json','Content-Type': 'application/json'},
@@ -36,8 +39,11 @@ const sendToken=(e)=>{
     .then(res => res.json())
     .then(
       (result) => {
-        props.setUser({name:result.name,token:token})
-        localStorage.setItem("name",result.name)
+        console.log(result);
+        var res=result[0]
+        var name=res.username
+        props.setUser({name:name,token:token})
+        localStorage.setItem("name",name)
         localStorage.setItem("token",token)
         //setTrips(result.trips)
       },
@@ -59,8 +65,8 @@ const sendToken=(e)=>{
         <>
             { logUser==null ? ( //L'user doit faire un choix entre connexion et inscription 
                 <>
-                    <a href='#' className='link link-secondary' onClick={()=>{setLogUser(true)}}>Se connecter</a> /
-                    <a href='#' className='link link-secondary' onClick={()=>{setLogUser(false)}}>S'inscrire</a>
+                    <a href='#' className='link link-secondary' onClick={()=>{setLogUser(true)}}>S'inscrire</a> /
+                    <a href='#' className='link link-secondary' onClick={()=>{setLogUser(false)}}>Se connecter</a>
                 </>
             ):(
                 <>
