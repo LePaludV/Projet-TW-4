@@ -1,11 +1,10 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {
   MapContainer,
   Marker,
   Popup,
   TileLayer,
-  SVGOverlay ,
-} from 'react-leaflet'
+  } from 'react-leaflet'
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import UpdateMap from "./UpdateMapLocation";
@@ -21,17 +20,10 @@ var IconYou = L.icon({
 
 
 
+
 const OSMap = (props) => {
   const locations = props.locations; 
-  //props.setLocation(GetLocation())
-
   
-// PB -> Quand l'user accept pas le temps de prendre en compte avant le chargement du reste  
-
-
-
-  //console.log(props.places);
-  console.log(locations);
   return (
     <div className="OSMap col">
       <div className="border rounded-2">
