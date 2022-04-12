@@ -92,3 +92,6 @@ code {
   color: #000;
   text-shadow: 0 0 5px #09f;
 }
+.link:hover{
+  cursor:pointer;
+}

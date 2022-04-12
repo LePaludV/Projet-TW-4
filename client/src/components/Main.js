@@ -5,6 +5,7 @@ import Itineraire from './Itineraire'
 import Sidebar from './Sidebar';
 import GetPlaces from './GetPlaces'
 import GetLocation from './GetLocation';
+import Infobar from './InfoBar'
 
 const Main = (props) => {
     const [sideBar, setSideBar] = useState(false)
@@ -15,6 +16,7 @@ const Main = (props) => {
     const [AllPlaces, setAllPlaces] = useState([]);
     const [rayon, setRayon] = useState(10);
     const [user, setUser] = useState({name:localStorage.getItem('name'),token:localStorage.getItem('token')})
+    const [infoPerso, setInfoPerso] = useState(false)
 
     useEffect(() => {
       fetch(" /listPlaces")
@@ -37,11 +39,12 @@ const Main = (props) => {
         <div className="Main row">
                 <GetPlaces AllPlaces={AllPlaces} rayon={rayon} setRayon={setRayon} location={location} places={places} setPlaces={setPlaces}/>
                 <GetLocation location={location} setLocation={setLocation} />
-                <Header user={user} setUser={setUser} barItineraire={barItineraire} setBarItineraire={setBarItineraire} lang={props.lang} setLang={props.setLang} sideBar={sideBar} setSideBar={setSideBar}/>
+                <Header infoPerso={infoPerso} setInfoPerso={setInfoPerso} user={user} setUser={setUser} barItineraire={barItineraire} setBarItineraire={setBarItineraire} lang={props.lang} setLang={props.setLang} sideBar={sideBar} setSideBar={setSideBar}/>
                 {sideBar ? <Sidebar placesSelected={placesSelected} setPlacesSelected={setPlacesSelected}  lang={props.lang} rayon={rayon} setRayon={setRayon} places={places} /> :null}
+               
                 <OSMap user={user} barItineraire={barItineraire} setBarItineraire={setBarItineraire} placesSelected={placesSelected} rayon={rayon} setRayon={setRayon} setPlacesSelected={setPlacesSelected} lang={props.lang} locations={location} setLocation={setLocation} places={places}/>
                {barItineraire ?<Itineraire  user={user} setUser={setUser} placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} /> :null} 
-                
+               {infoPerso ? <Infobar  user={user} setUser={setUser}/>:null} 
         </div>
     );
 };

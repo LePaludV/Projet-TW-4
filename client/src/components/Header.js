@@ -32,11 +32,11 @@ var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
                 </svg>
               </button>
             </h2>
-            <a className="text-light">{txtLang[props.lang][1]}</a>
-            <Connexion user={props.user} setUser={props.setUser}/>
-            <a className="text-light"  onClick={() => props.setBarItineraire(!props.barItineraire)}>
+            {/* <a className="text-light">{txtLang[props.lang][1]}</a> */}
+            <Connexion infoPerso={props.infoPerso} setInfoPerso={props.setInfoPerso} user={props.user} setUser={props.setUser}/>
+            <button className="btn btn-sm btn-outline-light"  onClick={() => props.setBarItineraire(!props.barItineraire)}>
             {txtLang[props.lang][2]}
-            </a>
+            </button>
 
             
 <div className="dropdown">
