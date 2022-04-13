@@ -4,7 +4,7 @@ import EtoileNoteAvis from './EtoileNoteAvis';
 const ListAvis = (props) => {
     console.log("chargement avis");
 
-    
+    let listAvis = (props.newAvis).concat(props.avis)
  
 
     return (
@@ -19,7 +19,9 @@ const ListAvis = (props) => {
     </tr>
   </thead>
   <tbody>
-            {props.avis.map((item) => (
+
+
+            {listAvis.map((item) => (
                
                 <tr key={item.date} >
 

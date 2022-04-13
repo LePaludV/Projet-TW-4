@@ -4,6 +4,7 @@ import ListAvis from './ListAvis';
 
 const ModalInfo = (props) => {
   const [avis, setAvis] = useState([])
+  const [newAvis, setNewAvis] = useState([])
 
   //On récupèrle les avis d'un lieux 
 
@@ -44,7 +45,7 @@ const ModalInfo = (props) => {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body:JSON.stringify({"id":props.place._id,"avis":avis})
+        body:JSON.stringify({"id":props.place._id,"avis":newAvis})
     })
   } 
     return (
@@ -60,8 +61,8 @@ const ModalInfo = (props) => {
       </div>
       <div class="modal-footer d-inline">
         <h3>Avis</h3>
-        <AjoutAvis avis={avis} setAvis={setAvis} user={props.user} lang={props.lang}/>
-        <ListAvis  avis={avis} setAvis={setAvis}/>
+        <AjoutAvis newAvis={newAvis} setNewAvis={setNewAvis} user={props.user} lang={props.lang}/>
+        <ListAvis  newAvis={newAvis} setNewAvis={setNewAvis} avis={avis} setAvis={setAvis}/>
        
 
       </div>

@@ -19,8 +19,8 @@ const AjoutAvis = (props) => {
         var note = document.querySelector('input[name="stars"]:checked').value;
         var texte= e.target.texte.value;
         var avis ={"nom":props.user.name,"note":note,"text": texte,"date":new Date()};
-        var tmp=props.avis;
-        props.setAvis(tmp.concat(avis))
+        var tmp=props.newAvis;
+        props.setNewAvis(tmp.concat(avis))
 
     }
     return (
