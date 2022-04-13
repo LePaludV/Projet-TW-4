@@ -48,11 +48,22 @@ const ModalInfo = (props) => {
         body:JSON.stringify({"id":props.place._id,"avis":newAvis})
     })
   } 
+
+  const calculMoyenne=()=>{
+    let listAvis = (newAvis).concat(avis)
+    let t=0
+    listAvis.map(x=> t+=parseInt((x.note)))
+    let r = t / (listAvis.length)
+    console.log(t,r);
+    return Math.round(r)
+  }
+  let moyenne =calculMoyenne() 
     return (
         <div className="Modal" id="ModalInfoLieux">
           <div className="modal-content">
-            <div className="modal-header">
-          <h2 class="modal-title">{props.place.titre}</h2>
+            <div className=" position-relative modal-header">
+          <h2 class=" position-absolute top-0 start-50 translate-middle modal-title">{props.place.titre}</h2>
+          <h6 class="position-absolute top-50 start-50 translate-middle">Note moyenne : {moyenne}/5</h6>
           
           <button className='btn-close' onClick={() =>{closeModal()}} ></button>
         </div>

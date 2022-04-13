@@ -65,7 +65,8 @@ const AjoutAvis = (props) => {
               <span class="icon">★</span>
             </label>
           </div>
-          <p>Ce commentire sera poster sous le nom de {props.user.name}</p>
+          {props.user.name!=null?<p>Ce commentire sera poster sous le nom de {props.user.name}</p>: <p>Commentaire annonyme</p> }
+          
           
           <label htmlFor="texte"></label>
           <textarea
