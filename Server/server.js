@@ -38,8 +38,6 @@ function httpRequest(URL, callback) {
 }
 
 function newPassword(alreadyUsed) {
-  /*alpha = "abcdefghijklmnopqrstuvwxyz";
-  elements = alpha.split("").concat(alpha.toUpperCase().split(""));*/
   elements = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&'()*+,;=".split("");
 
   pass = "";
@@ -103,8 +101,7 @@ app.post("/getUserInfo", async(req, res) => {
 });
 
 app.get("/conn/:token", async(req, res) => {
-  // TODO: connection de l'utilisateur
-  res.send(req.params.token);
+  res.sendFile(__dirname + "/static/connection.html");
 });
 
 app.get("/qrcode/:token", async(req, res) => {
@@ -156,11 +153,17 @@ app.post("/getAvis", async(req, res) => {
 
 app.post("/addAvis", async(req, res) => {
   id = req.body["id"];
-  avis = req.body["avis"];
-  console.log(avis);
+  avisL = req.body["avis"];
+
   db = client.db("TW4");
   collec = db.collection("avis");
-  await collec.insertOne({id_lieu: id, avis: avis});
+  for (avis of avisL) {
+    await collec.replaceOne(
+      {"id_lieu": id, "avis.nom": avis["nom"]}, // Filtre pour remplacer l'avis si il existe déjà
+      {id_lieu: id, avis: avis}, // Le nouvel avis
+      {upsert: true}); // Créer un nouvel avis si le filtre ne trouve pas de query correspondante
+  }
+
   avis = await listAvis(id);
 
   res.json(avis);
