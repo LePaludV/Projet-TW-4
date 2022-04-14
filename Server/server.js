@@ -38,7 +38,7 @@ function httpRequest(URL, callback) {
 }
 
 function newPassword(alreadyUsed) {
-  elements = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#[]@!$&'()*+,;=".split("");
+  elements = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:?#[]@!$&'()*+,;=".split("");
 
   pass = "";
 
@@ -101,6 +101,7 @@ app.post("/getUserInfo", async(req, res) => {
 });
 
 app.get("/conn/:token", async(req, res) => {
+  console.log("conn");
   res.sendFile(__dirname + "/static/connection.html");
 });
 

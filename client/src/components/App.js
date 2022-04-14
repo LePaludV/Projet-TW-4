@@ -1,9 +1,11 @@
 import Main from './Main'
+import ConnexionConn from './ConnexionConn';
 
 import { BrowserRouter,Routes, Route, Link } from "react-router-dom";
 import {useState,useEffect} from 'react';
 import socketIOClient from "socket.io-client";
 import { initiateSocketConnection } from '../socketio.service.js';
+
 
 
 function App() {
@@ -21,7 +23,7 @@ function App() {
         <BrowserRouter>
         <Routes>
            <Route path="/" element={<Main lang={lang} setLang={setLang}/>} />
-           {/* <Route path="/test" element={<Test/>} /> */}
+           <Route path="/conn/:token" element={<ConnexionConn/> }/>
         </Routes>
         </BrowserRouter>
       </div>
