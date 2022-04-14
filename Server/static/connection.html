@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Connection</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <p id="test">Yes</p>
+    <script>
+      token = location.href.substring(location.href.lastIndexOf("/")+1);
+      localStorage.setItem("token", token);
+      location.href = "/";
+    </script>
+  </body>
+<html>

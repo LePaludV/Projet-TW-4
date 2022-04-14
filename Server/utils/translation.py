@@ -2,7 +2,7 @@ import json
 import subprocess as sp
 import sys
 
-with open("newdata.json", "r") as f:
+with open("translateddata.json", "r") as f:
     data = json.load(f)
 
 
