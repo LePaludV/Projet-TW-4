@@ -32,6 +32,32 @@ const Main = (props) => {
         
     }, []);
     
+    useEffect(() => {
+      if(user.name==null && user.token!=null){
+        var token=user.token;
+        fetch("/getUserInfo ",{
+          method:'POST',
+          headers: {'Accept': 'application/json','Content-Type': 'application/json'},
+          body:JSON.stringify({"token":token})})
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log(result);
+          var res=result[0]
+          var name=res.username
+          setUser({name:name,token:token})
+          localStorage.setItem("name",name)
+          localStorage.setItem("token",token)
+          //setTrips(result.trips)
+        },
+        (error) => {console.log(error);
+        }
+      )
+      }
+    
+      
+    }, [user])
+    
 
  
 

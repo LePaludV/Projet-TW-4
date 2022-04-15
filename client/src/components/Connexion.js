@@ -31,6 +31,9 @@ const sendName=(e)=>{
 const sendToken=(e)=>{
     e.preventDefault()
     var token=e.target[0].value
+    props.setUser({name:null,token:token})
+    /*
+    var token=e.target[0].value
     console.log("le token envoyé : "+token);
     fetch("/getUserInfo ",{
         method:'POST',
@@ -53,7 +56,7 @@ const sendToken=(e)=>{
         console.log(props.user)
     )
     
-
+*/
 }
 
 
@@ -77,7 +80,7 @@ const sendToken=(e)=>{
                         <input placeholder="Entrez un nom d'utilisateur" id="choose" name="userNAME" required/>
                         </form>
                         <div className="col">
-                        <a href="#" class="link link-secondary" onClick={()=>{setLogUser(null)}}> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fillRi="currentColor" className="bi bi-x-circle" viewBox="0 0 16 16">
+                        <a href="#" className="link link-secondary" onClick={()=>{setLogUser(null)}}> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                         </svg></a></div>
@@ -90,7 +93,7 @@ const sendToken=(e)=>{
                         <input placeholder="Entrez votre token" id="choose" name="userID" required/>
                         </form>
                        <div className="col">
-                        <a href="#" class="link link-secondary" onClick={()=>{setLogUser(null)}}> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle" viewBox="0 0 16 16">
+                        <a href="#" className="link link-secondary" onClick={()=>{setLogUser(null)}}> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                         </svg></a>
@@ -109,13 +112,13 @@ const sendToken=(e)=>{
     :
     (<div> <span>Bienvenue {props.user.name} </span>
     {/*Affichage bar d'info*/}
-    <a href="#" class="link link-info" onClick={()=>{props.setBarItineraire(false);props.setInfoPerso(!props.infoPerso)}}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+    <a href="#" className="link link-info" onClick={()=>{props.setBarItineraire(false);props.setInfoPerso(!props.infoPerso)}}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
   </svg></a>
 
   {/* Deconnexion */}
-  <a href="#" class="link link-danger" onClick={()=>{setLogUser(null); props.setUser({'name':null,'token':null})}}> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+  <a href="#" className="link link-danger" onClick={()=>{setLogUser(null); props.setUser({'name':null,'token':null})}}> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle-fill" viewBox="0 0 16 16">
   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
 </svg></a>
 
