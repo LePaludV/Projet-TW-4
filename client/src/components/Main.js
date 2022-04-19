@@ -70,7 +70,7 @@ const Main = (props) => {
                
                 <OSMap user={user} barItineraire={barItineraire} setBarItineraire={setBarItineraire} placesSelected={placesSelected} rayon={rayon} setRayon={setRayon} setPlacesSelected={setPlacesSelected} lang={props.lang} locations={location} setLocation={setLocation} places={places}/>
                {barItineraire ?<Itineraire  user={user} setUser={setUser} placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} /> :null} 
-               {infoPerso ? <Infobar  user={user} setUser={setUser}/>:null} 
+               {infoPerso ? <Infobar  infoPerso={infoPerso} setInfoPerso={setInfoPerso} user={user} setUser={setUser}/>:null} 
         </div>
     );
 };

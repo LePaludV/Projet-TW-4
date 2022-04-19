@@ -19,6 +19,7 @@ const sendName=(e)=>{
         props.setUser({name:username,token:token})
         localStorage.setItem("name",username)
         localStorage.setItem("token",token)
+        props.setInfoPerso(true)
       },
       (error) => {console.log(error);
       }
