@@ -3,7 +3,7 @@ import React from 'react';
 
 const AjoutAvis = (props) => {
 
-    console.log(props.avis);
+    //console.log(props.avis);
     /*Liste d'avis de la forme : 
 
     avis ={

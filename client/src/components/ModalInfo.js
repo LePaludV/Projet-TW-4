@@ -20,7 +20,10 @@ const ModalInfo = (props) => {
   .then(res => res.json())
   .then(
     (result) => {
-      setAvis(result)
+      console.log(result);
+      console.log(new Date(((result[0]).avis).date));
+      setAvis((result[0]).avis)
+      
     },
     (error) => {console.log(error);
     }
@@ -54,7 +57,7 @@ const ModalInfo = (props) => {
     let t=0
     listAvis.map(x=> t+=parseInt((x.note)))
     let r = t / (listAvis.length)
-    console.log(t,r);
+    //console.log(t,r);
     return Math.round(r)
   }
   let moyenne =calculMoyenne() 
@@ -62,18 +65,19 @@ const ModalInfo = (props) => {
         <div className="Modal" id="ModalInfoLieux">
           <div className="modal-content">
             <div className=" position-relative modal-header">
-          <h2 class=" position-absolute top-0 start-50 translate-middle modal-title">{props.place.titre}</h2>
-          <h6 class="position-absolute top-50 start-50 translate-middle">Note moyenne : {moyenne}/5</h6>
+          <h2 className=" position-absolute top-0 start-50 translate-middle modal-title">{props.place.titre}</h2>
+          <h6 className="position-absolute top-50 start-50 translate-middle">Note moyenne : {moyenne}/5</h6>
           
           <button className='btn-close' onClick={() =>{closeModal()}} ></button>
         </div>
-        <div class="modal-body">
+        <div className="modal-body">
         <p>{props.place.description[props.lang]!=='.' ? props.place.description[props.lang] : "Pas de description"}</p>
       </div>
-      <div class="modal-footer d-inline">
+      <div className="modal-footer d-inline">
         <h3>Avis</h3>
         <AjoutAvis newAvis={newAvis} setNewAvis={setNewAvis} user={props.user} lang={props.lang}/>
         <ListAvis  newAvis={newAvis} setNewAvis={setNewAvis} avis={avis} setAvis={setAvis}/>
+        
        
 
       </div>

@@ -205,7 +205,12 @@ io.on("connection", (socket) => {
     console.log("Someone left: " + (players.size).toString() + " player(s)");
   });
   socket.on("Itineraire",(obj)=>{
-    console.log(obj);
+    var startPoint=obj.location;
+    console.log(startPoint);
+    var L=obj.Itineraire
+    //getCompleteRoute(L, startPoint)
+    //console.log("go");
+    //console.log(r);
   });
 })
 // TODO: AJouter les joueurs dans un JSON pour les déconnections

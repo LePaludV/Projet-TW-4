@@ -13,8 +13,8 @@ const Itineraire = (props) => {
       props.placesSelected.map((e)=>(
         places.push([e.longiture,e.latitude])
       ))
-
-      sendIntineraire({token:props.user.token,location:props.location,Itineraire:places})
+     
+      sendIntineraire({token:props.user.token,location:[props.location.coordinates.lat,props.location.coordinates.lng],Itineraire:places})
     }
     return (
         <div className='Itineraire text-light ' id='Itineraire' style={{width:20+"vw"}}>

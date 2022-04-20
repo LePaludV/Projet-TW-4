@@ -4,9 +4,11 @@ import EtoileNoteAvis from './EtoileNoteAvis';
 const ListAvis = (props) => {
     console.log("chargement avis");
 
-    let listAvis = (props.newAvis).concat(props.avis)
- 
+    var listAvis = (props.newAvis).concat(props.avis)
 
+    listAvis = props.listAvis.map((item) => ({"date":new Date(item.date),"nom":item.nom,"note":item.note,'text':item.text}))
+    console.log(listAvis);
+     
     return (
         <div className="list-group">
             <table className="table">
@@ -20,8 +22,9 @@ const ListAvis = (props) => {
   </thead>
   <tbody>
 
-
+            
             {listAvis.map((item) => (
+              
                
                 <tr key={item.date} >
 

@@ -60,7 +60,7 @@ const Main = (props) => {
     
 
  
-
+    
     return (
         <div className="Main row">
                 <GetPlaces AllPlaces={AllPlaces} rayon={rayon} setRayon={setRayon} location={location} places={places} setPlaces={setPlaces}/>
@@ -69,8 +69,8 @@ const Main = (props) => {
                 {sideBar ? <Sidebar placesSelected={placesSelected} setPlacesSelected={setPlacesSelected}  lang={props.lang} rayon={rayon} setRayon={setRayon} places={places} /> :null}
                
                 <OSMap user={user} barItineraire={barItineraire} setBarItineraire={setBarItineraire} placesSelected={placesSelected} rayon={rayon} setRayon={setRayon} setPlacesSelected={setPlacesSelected} lang={props.lang} locations={location} setLocation={setLocation} places={places}/>
-               {barItineraire ?<Itineraire  user={user} setUser={setUser} placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} /> :null} 
-               {infoPerso ? <Infobar  infoPerso={infoPerso} setInfoPerso={setInfoPerso} user={user} setUser={setUser}/>:null} 
+               {barItineraire ?<Itineraire  location={location} setLocation={setLocation} user={user} setUser={setUser} placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} /> :null} 
+               {infoPerso ? <Infobar   infoPerso={infoPerso} setInfoPerso={setInfoPerso} user={user} setUser={setUser}/>:null} 
         </div>
     );
 };
