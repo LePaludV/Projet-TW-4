@@ -137,17 +137,16 @@ app.post("/getRoute", (req, res) => {
   //res.json({"nope": "nope"});
 });
 
-async function listAvis(id_lieu) {
-  db = client.db("TW4");
-  collec = db.collection("avis");
-  return await collec.find({id_lieu: id_lieu}).toArray();
-}
-
 app.post("/getAvis", async(req, res) => {
   id = req.body["id"];
-  avis = await listAvis(id);
-  console.log(avis);
-  res.json(avis);
+  db = client.db("TW4");
+  collec = db.collection("avis");
+  avisL = await collec.find({id_lieu: id}).toArray();
+  toSend = []
+  for (a of avisL) {
+    toSend.push(a["avis"])
+  }
+  res.json(toSend);
 });
 
 app.post("/addAvis", async(req, res) => {
@@ -163,9 +162,7 @@ app.post("/addAvis", async(req, res) => {
       {upsert: true}); // Créer un nouvel avis si le filtre ne trouve pas de query correspondante
   }
 
-  avis = await listAvis(id);
-
-  res.json(avis);
+  res.json(req.body);
 });
 
 function getCompleteRoute(L, startPoint, callback) {
