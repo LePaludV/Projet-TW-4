@@ -21,8 +21,7 @@ const ModalInfo = (props) => {
   .then(
     (result) => {
       console.log(result);
-      console.log(new Date(((result[0]).avis).date));
-      setAvis((result[0]).avis)
+      setAvis(result)
       
     },
     (error) => {console.log(error);
@@ -37,8 +36,6 @@ const ModalInfo = (props) => {
 
 
   const closeModal=()=>{   
-      props.setIsModalOpen(!props.isModalOpen)
-      document.querySelector(".OSMap").style.display=""    
       
       //On mes envoie la maj des avis au serveur 
 
@@ -49,7 +46,11 @@ const ModalInfo = (props) => {
           'Content-Type': 'application/json'
         },
         body:JSON.stringify({"id":props.place._id,"avis":newAvis})
-    })
+    }).then( ()=>{
+      props.setIsModalOpen(!props.isModalOpen);
+    document.querySelector(".OSMap").style.display=""    })
+   
+
   } 
 
   const calculMoyenne=()=>{

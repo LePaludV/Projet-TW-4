@@ -6,7 +6,7 @@ const ListAvis = (props) => {
 
     var listAvis = (props.newAvis).concat(props.avis)
 
-    listAvis = props.listAvis.map((item) => ({"date":new Date(item.date),"nom":item.nom,"note":item.note,'text':item.text}))
+    listAvis = listAvis.map((item) => ({"date":new Date(item.date),"nom":item.nom,"note":item.note,'text':item.text}))
     console.log(listAvis);
      
     return (

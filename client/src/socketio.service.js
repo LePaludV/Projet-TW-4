@@ -7,6 +7,12 @@ export const initiateSocketConnection = () => {
 	console.log(`Connecting socket...`);
 }
 
-export const sendIntineraire = (obj) => {
-	socket.emit('Itineraire',obj);
+
+export const sendIntineraire = (obj,callback) => {
+	console.log(obj);
+	socket.emit('Itineraire',obj,function(res){
+		callback(res);
+	})
+	
+	
 }

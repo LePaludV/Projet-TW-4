@@ -167,21 +167,23 @@ app.post("/addAvis", async(req, res) => {
 });
 
 function getCompleteRoute(L, startPoint, callback) {
+  console.log("_________________");
   L = [startPoint].concat(L);
   points = "";
   for (p of L) {
     points += p[0].toString() + "," + p[1].toString();
     points += ";"
   }
+  
   points = points.substring(0, points.length-1);
-
+  console.log(points);
   httpRequest(`http://router.project-osrm.org/trip/v1/foot/${points}?source=first&geometries=polyline`, data => {
     geometry = JSON.parse(data).trips[0].geometry;
     callback(polyline.decode(geometry));
   });
 }
-//getCompleteRoute([[2.1484799385071, 43.925579071045], [2.1436800956726, 43.929229736328]], [2.14513, 43.92274], res => console.log(res));
-  
+//getCompleteRoute([[2.1484799385071, 43.925579071045], [2.1436800956726, 43.929229736328]], [2.14513, 43.92274], res =>console.log(res));
+
 server.listen(3001, () => {
   console.log("listening on *:3001");
 });
@@ -200,11 +202,10 @@ io.on("connection", (socket) => {
     players.delete(socket.id);
     console.log("Someone left: " + (players.size).toString() + " player(s)");
   });
-  socket.on("Itineraire",(obj)=>{
+  socket.on("Itineraire",function(obj, callback){
     var startPoint=obj.location;
-    console.log(startPoint);
     var L=obj.Itineraire
-    //getCompleteRoute(L, startPoint)
+    getCompleteRoute(L,startPoint,res =>  callback(res))
     //console.log("go");
     //console.log(r);
   });
