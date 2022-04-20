@@ -157,10 +157,14 @@ app.post("/addAvis", async(req, res) => {
   db = client.db("TW4");
   collec = db.collection("avis");
   for (avis of avisL) {
-    await collec.replaceOne(
-      {"id_lieu": id, "avis.nom": avis["nom"]}, // Filtre pour remplacer l'avis si il existe déjà
-      {id_lieu: id, avis: avis}, // Le nouvel avis
-      {upsert: true}); // Créer un nouvel avis si le filtre ne trouve pas de query correspondante
+    if (avis["nom"] == null) {
+      await collec.insertOne({id_lieu: id, avis: avis});
+    } else {
+      await collec.replaceOne(
+        {"id_lieu": id, "avis.nom": avis["nom"]}, // Filtre pour remplacer l'avis si il existe déjà
+        {id_lieu: id, avis: avis}, // Le nouvel avis
+        {upsert: true}); // Créer un nouvel avis si le filtre ne trouve pas de query correspondante
+    }
   }
 
   res.json(req.body);
@@ -178,6 +182,7 @@ function getCompleteRoute(L, startPoint, callback) {
   points = points.substring(0, points.length-1);
   console.log(points);
   httpRequest(`http://router.project-osrm.org/trip/v1/foot/${points}?source=first&geometries=polyline`, data => {
+    console.log(data);
     geometry = JSON.parse(data).trips[0].geometry;
     callback(polyline.decode(geometry));
   });
