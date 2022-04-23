@@ -10,7 +10,7 @@ const Itineraire = (props) => {
       fetch("/saveTrip",{
         method:'POST',
         headers: {'Accept': 'application/json','Content-Type': 'application/json'},
-        body:JSON.stringify({"idUser":props.user.token,"TripName":nom,"List":props.itinerary})})
+        body:JSON.stringify({"tokenUser":props.user.token,"TripName":nom,"List":props.itinerary})})
     .then(res => res.json())
     .then(
       (result) => {
