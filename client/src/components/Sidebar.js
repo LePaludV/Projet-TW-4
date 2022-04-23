@@ -16,7 +16,9 @@ const Sidebar = (props) => {
 
   return (
       
-      <div className="Sidebar"style={{width:20+"vw"}} >
+      <div className="Sidebar barres"
+      //style={{width:20+"vw"}} 
+      >
         
 
 

@@ -95,3 +95,23 @@ code {
 .link:hover{
   cursor:pointer;
 }
+.barres{
+  width:20vw
+}
+
+
+@media (max-width:1048px) { 
+  .barres{
+    width:30vw
+ }
+}
+  @media (max-width:898px) { 
+    .barres{
+      width:40vw
+   }
+}
+
+@media (max-width:798px) { 
+  .barres{
+    width:60vw
+ }}

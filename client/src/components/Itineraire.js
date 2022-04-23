@@ -40,9 +40,9 @@ const Itineraire = (props) => {
     }
     return (
       <div
-        className="Itineraire text-light "
+        className="Itineraire text-light barres "
         id="Itineraire"
-        style={{ width: 20 + "vw" }}
+        // style={{ width: 20 + "vw" }}
       >
         {props.placesSelected.map((place) => (
           <p className="d-flex justify-content-between" key={place._id}>

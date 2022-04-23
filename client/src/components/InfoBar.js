@@ -31,9 +31,9 @@ useEffect(() => {
 
     return (
       <div
-        className="Itineraire text-light "
+        className="Itineraire text-light barres "
         id="Itineraire"
-        style={{ width: 20 + "vw" }}
+        // style={{ width: 20 + "vw" }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
