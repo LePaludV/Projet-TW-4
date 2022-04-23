@@ -17,6 +17,7 @@ const Main = (props) => {
     const [rayon, setRayon] = useState(10);
     const [user, setUser] = useState({name:localStorage.getItem('name'),token:localStorage.getItem('token')})
     const [infoPerso, setInfoPerso] = useState(false)
+    const [itinerary, setItinary] = useState(null)
 
     useEffect(() => {
       fetch(" /listPlaces")
@@ -68,8 +69,8 @@ const Main = (props) => {
                 <Header infoPerso={infoPerso} setInfoPerso={setInfoPerso} user={user} setUser={setUser} barItineraire={barItineraire} setBarItineraire={setBarItineraire} lang={props.lang} setLang={props.setLang} sideBar={sideBar} setSideBar={setSideBar}/>
                 {sideBar ? <Sidebar placesSelected={placesSelected} setPlacesSelected={setPlacesSelected}  lang={props.lang} rayon={rayon} setRayon={setRayon} places={places} /> :null}
                
-                <OSMap user={user} barItineraire={barItineraire} setBarItineraire={setBarItineraire} placesSelected={placesSelected} rayon={rayon} setRayon={setRayon} setPlacesSelected={setPlacesSelected} lang={props.lang} locations={location} setLocation={setLocation} places={places}/>
-               {barItineraire ?<Itineraire  location={location} setLocation={setLocation} user={user} setUser={setUser} placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} /> :null} 
+                <OSMap itinerary={itinerary} setItinerary={setItinary} user={user} barItineraire={barItineraire} setBarItineraire={setBarItineraire} placesSelected={placesSelected} rayon={rayon} setRayon={setRayon} setPlacesSelected={setPlacesSelected} lang={props.lang} locations={location} setLocation={setLocation} places={places}/>
+               {barItineraire ?<Itineraire  itinerary={itinerary} setItinerary={setItinary} location={location} setLocation={setLocation} user={user} setUser={setUser} placesSelected={placesSelected} setPlacesSelected={setPlacesSelected} lang={props.lang} /> :null} 
                {infoPerso ? <Infobar   infoPerso={infoPerso} setInfoPerso={setInfoPerso} user={user} setUser={setUser}/>:null} 
         </div>
     );

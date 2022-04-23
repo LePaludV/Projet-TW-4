@@ -16,7 +16,7 @@ const Itineraire = (props) => {
      
       
       sendIntineraire(({token:props.user.token,location:[props.location.coordinates.lng,props.location.coordinates.lat],Itineraire:places}),
-      res => {console.log(res);})
+      res => {props.setItinerary(res); console.log(res);})
     }
     return (
         <div className='Itineraire text-light ' id='Itineraire' style={{width:20+"vw"}}>

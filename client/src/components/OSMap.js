@@ -4,6 +4,7 @@ import {
   Marker,
   Popup,
   TileLayer,
+  Polyline,
   } from 'react-leaflet'
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -17,13 +18,13 @@ var IconYou = L.icon({
   iconSize: [32, 32],
   //iconAnchor: [0, 32],
 });
-
-
+const color = { color: 'red' }
 
 
 const OSMap = (props) => {
   const locations = props.locations; 
-  
+  console.log(props.itinerary);
+
   return (
     <div className="OSMap col">
       <div className="border rounded-2">
@@ -45,7 +46,7 @@ const OSMap = (props) => {
           
           }
           <Lieux user={props.user} barItineraire={props.barItineraire} setBarItineraire={props.setBarItineraire} placesSelected={props.placesSelected} setPlacesSelected={props.setPlacesSelected} lang={props.lang} locations={locations} places={props.places} /> 
-          
+          {props.itinerary != null ? <Polyline pathOptions={color} positions={props.itinerary} /> : null}
         </MapContainer>
       </div>
     </div>
