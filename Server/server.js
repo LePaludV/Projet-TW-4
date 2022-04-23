@@ -181,7 +181,7 @@ function getCompleteRoute(L, startPoint, callback) {
   
   points = points.substring(0, points.length-1);
   console.log(points);
-  httpRequest(`http://router.project-osrm.org/trip/v1/foot/${points}?source=first&geometries=polyline`, data => {
+  httpRequest(`http://router.project-osrm.org/trip/v1/foot/${points}?source=first&geometries=polyline&roundtrip=false&destination=last` /*`http://127.0.0.1:5000/trip/v1/foot/${points}?source=first&geometries=polyline&roundtrip=false&destination=last`*/, data => {
     console.log(data);
     geometry = JSON.parse(data).trips[0].geometry;
     callback(polyline.decode(geometry));
