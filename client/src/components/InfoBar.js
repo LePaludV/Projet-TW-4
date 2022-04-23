@@ -12,7 +12,7 @@ useEffect(() => {
     .then(res => res.json())
     .then(
       (result) => {
-        //console.log(result);
+        console.log(result);
         setListTrips(result)
         
         //setTrips(result.trips)
