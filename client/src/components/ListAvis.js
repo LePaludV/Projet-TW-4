@@ -1,5 +1,6 @@
 import React from 'react';
 import EtoileNoteAvis from './EtoileNoteAvis';
+import txtLang from "../lang.json"
 
 const ListAvis = (props) => {
     console.log("chargement avis");
@@ -14,10 +15,10 @@ const ListAvis = (props) => {
             <table className="table">
   <thead>
     <tr>
-      <th scope="col">Nom</th>
-      <th scope="col">Note</th>
-      <th scope="col">Avis</th>
-      <th scope="col">Date</th>
+      <th scope="col">{txtLang[props.lang][26]}</th>
+      <th scope="col">{txtLang[props.lang][27]}</th>
+      <th scope="col">{txtLang[props.lang][28]}</th>
+      <th scope="col">{txtLang[props.lang][29]}</th>
     </tr>
   </thead>
   <tbody>

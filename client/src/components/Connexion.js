@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import txtLang from "../lang.json"
 
 const Connexion = (props) => {
     const [logUser, setLogUser] = useState(null)
@@ -69,8 +70,8 @@ const sendToken=(e)=>{
         <>
             { logUser==null ? ( //L'user doit faire un choix entre connexion et inscription 
                 <>
-                    <a href='#' className='link link-secondary' onClick={()=>{setLogUser(true)}}>S'inscrire</a> /
-                    <a href='#' className='link link-secondary' onClick={()=>{setLogUser(false)}}>Se connecter</a>
+                    <a href='#' className='link link-secondary' onClick={()=>{setLogUser(true)}}>{txtLang[props.lang][18]}</a> /
+                    <a href='#' className='link link-secondary' onClick={()=>{setLogUser(false)}}>{txtLang[props.lang][19]}</a>
                 </>
             ):(
                 <>
@@ -78,7 +79,7 @@ const sendToken=(e)=>{
                         /*L'user a fait le choi de se connecter */ 
                         <div className="row">
                         <form className="col" onSubmit={(e)=>{sendName(e)}}>
-                        <input placeholder="Entrez un nom d'utilisateur" id="choose" name="userNAME" required/>
+                        <input placeholder={txtLang[props.lang][20]} id="choose" name="userNAME" required/>
                         </form>
                         <div className="col">
                         <a href="#" className="link link-secondary" onClick={()=>{setLogUser(null)}}> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle" viewBox="0 0 16 16">
@@ -91,7 +92,7 @@ const sendToken=(e)=>{
                         /*L'user a fait le choix de se connecter */
                         <div className="row">
                         <form className="col" onSubmit={(e)=>{sendToken(e)}}>
-                        <input placeholder="Entrez votre token" id="choose" name="userID" required/>
+                        <input placeholder={txtLang[props.lang][21]} id="choose" name="userID" required/>
                         </form>
                        <div className="col">
                         <a href="#" className="link link-secondary" onClick={()=>{setLogUser(null)}}> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-circle" viewBox="0 0 16 16">
