@@ -86,7 +86,7 @@ app.post("/create", async(req, res) => {
 
     db = client.db("TW4");
     collec = db.collection("user");
-    ins = await collec.insertOne({"username": username, "token": token, "trips": []});
+    ins = await collec.insertOne({"username": username, "token": token, "trips": {}});
     res.json({"token": token});
   }
 });
