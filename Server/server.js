@@ -178,9 +178,11 @@ app.post("/saveTrip", async(req, res) => {
   db = client.db("TW4");
   collec = db.collection("user");
 
+  path = "trips."+tripName;
+
   await collec.updateOne(
     {token: tokenU},
-    {$set: {tripName: List}}
+    {$set: {[path]: List}}
   );
 
   res.send("ok");
