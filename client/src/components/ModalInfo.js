@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import AjoutAvis from './AjoutAvis'
 import ListAvis from './ListAvis';
-
+import txtLang from "../lang.json"
 const ModalInfo = (props) => {
   const [avis, setAvis] = useState([])
   const [newAvis, setNewAvis] = useState([])
@@ -67,17 +67,17 @@ const ModalInfo = (props) => {
           <div className="modal-content">
             <div className=" position-relative modal-header">
           <h2 className=" position-absolute top-0 start-50 translate-middle modal-title">{props.place.titre}</h2>
-          <h6 className="position-absolute top-50 start-50 translate-middle">Note moyenne : {moyenne}/5</h6>
+          <h6 className="position-absolute top-50 start-50 translate-middle">{txtLang[props.lang][30]}{moyenne}/5</h6>
           
           <button className='btn-close' onClick={() =>{closeModal()}} ></button>
         </div>
         <div className="modal-body">
-        <p>{props.place.description[props.lang]!=='.' ? props.place.description[props.lang] : "Pas de description"}</p>
+        <p>{props.place.description[props.lang]!=='.' ? props.place.description[props.lang] : txtLang[props.lang][31]}</p>
       </div>
       <div className="modal-footer d-inline">
-        <h3>Avis</h3>
+        <h3>{txtLang[props.lang][28]}</h3>
         <AjoutAvis newAvis={newAvis} setNewAvis={setNewAvis} user={props.user} lang={props.lang}/>
-        <ListAvis  newAvis={newAvis} setNewAvis={setNewAvis} avis={avis} setAvis={setAvis}/>
+        <ListAvis  lang={props.lang} newAvis={newAvis} setNewAvis={setNewAvis} avis={avis} setAvis={setAvis}/>
         
        
 

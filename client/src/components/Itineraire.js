@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import txtLang from "../lang.json";
 import { sendIntineraire } from '../socketio.service.js';
 const Itineraire = (props) => {   
@@ -90,7 +90,7 @@ const Itineraire = (props) => {
                     saveTrip(e);
                   }}
                 >
-                  <label style={{width:"auto"}}>Sauvegarder votre Itinéraire </label>
+                  <label style={{width:"auto"}}>{txtLang[props.lang][24]} </label>
                   <input
                     placeholder="Titre"
                     className="col-6"
@@ -106,7 +106,7 @@ const Itineraire = (props) => {
                 </form>
               </div>
             ) : (
-              <p>Connecté vous pour sauvegarder un itinéraire</p>
+              <p>{txtLang[props.lang][25]}</p>
             )}
           </>
         ) : null}

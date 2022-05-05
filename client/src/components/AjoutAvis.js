@@ -1,5 +1,5 @@
 import React from 'react';
-
+import txtLang from "../lang.json"
 
 const AjoutAvis = (props) => {
 
@@ -65,7 +65,7 @@ const AjoutAvis = (props) => {
               <span class="icon">★</span>
             </label>
           </div>
-          {props.user.name!=null?<p>Ce commentire sera poster sous le nom de {props.user.name}</p>: <p>Commentaire annonyme</p> }
+          {props.user.name!=null?<p>{txtLang[props.lang][15]} : {props.user.name}</p>: <p>{txtLang[props.lang][16]}</p> }
           
           
           <label htmlFor="texte"></label>
@@ -78,7 +78,7 @@ const AjoutAvis = (props) => {
           <br />
 
           <button type="submit" className="btn btn-primary">
-            Submit
+          {txtLang[props.lang][17]}
           </button>
         </form>
       </div>
