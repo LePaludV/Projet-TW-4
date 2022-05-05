@@ -180,7 +180,7 @@ app.post("/saveTrip", async(req, res) => {
 
   await collec.updateOne(
     {token: tokenU},
-    {$set: {trips: {tripName: List}}}
+    {$set: {trips: {name:tripName,List: List}}}
   );
 
   res.send("ok");
