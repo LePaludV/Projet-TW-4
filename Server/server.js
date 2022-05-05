@@ -170,6 +170,23 @@ app.post("/addAvis", async(req, res) => {
   res.json(req.body);
 });
 
+app.post("/saveTrip", async(req, res) => {
+  tokenU = req.body["tokenUser"];
+  tripName = req.body["TripName"]
+  List = req.body["List"]
+
+  db = client.db("TW4");
+  collec = db.collection("user");
+
+  await collec.updateOne(
+    {token: tokenU},
+    {$set: {trips: {tripName: List}}}
+  );
+
+  res.send("ok");
+
+});
+
 function getCompleteRoute(L, startPoint, callback) {
   console.log("_________________");
   L = [startPoint].concat(L);
