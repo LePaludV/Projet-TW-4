@@ -33,7 +33,7 @@ var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
               </button>
             </h2>
             {/* <a className="text-light">{txtLang[props.lang][1]}</a> */}
-            <Connexion barItineraire={props.barItineraire} setBarItineraire={props.setBarItineraire} infoPerso={props.infoPerso} setInfoPerso={props.setInfoPerso} user={props.user} setUser={props.setUser}/>
+            <Connexion  lang={props.lang} setLang={props.setLang} barItineraire={props.barItineraire} setBarItineraire={props.setBarItineraire} infoPerso={props.infoPerso} setInfoPerso={props.setInfoPerso} user={props.user} setUser={props.setUser}/>
             <button className="btn btn-sm btn-outline-light"  onClick={() => {props.setInfoPerso(false);props.setBarItineraire(!props.barItineraire)}}>
             {txtLang[props.lang][2]}
             </button>

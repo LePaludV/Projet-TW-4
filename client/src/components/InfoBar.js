@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-
+import txtLang from "../lang.json"
 const InfoBar = (props) => {
     const [listTrips, setListTrips] = useState([]);
    var qrcode="/qrcode/"+props.user.token
@@ -12,7 +12,7 @@ useEffect(() => {
     .then(res => res.json())
     .then(
       (result) => {
-        //console.log(result);
+        console.log(result);
         setListTrips(result)
         
         //setTrips(result.trips)
@@ -31,9 +31,9 @@ useEffect(() => {
 
     return (
       <div
-        className="Itineraire text-light "
+        className="Itineraire text-light barres "
         id="Itineraire"
-        style={{ width: 20 + "vw" }}
+        // style={{ width: 20 + "vw" }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -48,8 +48,8 @@ useEffect(() => {
         </svg>
     
         <div className=''>
-            <p>Bonjour {props.user.name} </p>
-            <p>Votre QR code de connexion pour vous connectez depuis votre smartphone: </p>
+            <p>{txtLang[props.lang][22]} {props.user.name} </p>
+            <p>{txtLang[props.lang][23]} </p>
             <img src={qrcode} />
         </div>
     

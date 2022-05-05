@@ -87,7 +87,7 @@ app.post("/create", async(req, res) => {
 
     db = client.db("TW4");
     collec = db.collection("user");
-    ins = await collec.insertOne({"username": username, "token": token, "trips": []});
+    ins = await collec.insertOne({"username": username, "token": token, "trips": {}});
     res.json({"token": token});
   }
 });
@@ -169,6 +169,25 @@ app.post("/addAvis", async(req, res) => {
   }
 
   res.json(req.body);
+});
+
+app.post("/saveTrip", async(req, res) => {
+  tokenU = req.body["tokenUser"];
+  tripName = req.body["TripName"]
+  List = req.body["List"]
+
+  db = client.db("TW4");
+  collec = db.collection("user");
+
+  path = "trips."+tripName;
+
+  await collec.updateOne(
+    {token: tokenU},
+    {$set: {[path]: List}}
+  );
+
+  res.send("ok");
+
 });
 
 function getCompleteRoute(L, startPoint, callback) {

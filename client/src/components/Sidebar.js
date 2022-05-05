@@ -1,5 +1,4 @@
 import React from "react";
-import getPlaces from "./GetPlaces.js"
 import txtLang from "../lang.json"
 const Sidebar = (props) => {
 
@@ -7,7 +6,7 @@ const Sidebar = (props) => {
     //console.log(props.places);
     
     const addPlace=(e)=>{
-      var lieu=props.places.filter( (p)=> p._id==e)
+      var lieu=props.places.filter( (p)=> p._id===e)
       var tmp = props.placesSelected
       if(!tmp.includes(lieu[0])){
         props.setPlacesSelected(tmp.concat(lieu))
@@ -16,7 +15,9 @@ const Sidebar = (props) => {
 
   return (
       
-      <div className="Sidebar"style={{width:20+"vw"}} >
+      <div className="Sidebar barres"
+      //style={{width:20+"vw"}} 
+      >
         
 
 
