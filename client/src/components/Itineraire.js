@@ -6,20 +6,12 @@ const Itineraire = (props) => {
     const saveTrip=(e)=>{
       e.preventDefault();
       var nom =(e.target[0].value);
-      console.log({"idUser":props.user.token,"TripName":nom,"List":props.itinerary});
+      var obj={"tokenUser":props.user.token,"TripName":nom,"List":props.itinerary}
+      console.log(obj);
       fetch("/saveTrip",{
         method:'POST',
         headers: {'Accept': 'application/json','Content-Type': 'application/json'},
-        body:JSON.stringify({"tokenUser":props.user.token,"TripName":nom,"List":props.itinerary})})
-    .then(res => res.json())
-    .then(
-      (result) => {
-        console.log(result);
-      },
-      (error) => {console.log(error);
-      }
-    )
-    }
+        body:JSON.stringify(obj)})}
 
     
     const supprPlace = (e)=>{

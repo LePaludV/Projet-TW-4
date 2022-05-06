@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import txtLang from "../lang.json"
+import ListTrips from './ListTrips';
 const InfoBar = (props) => {
     const [listTrips, setListTrips] = useState([]);
    var qrcode="/qrcode/"+props.user.token
@@ -12,8 +13,8 @@ useEffect(() => {
     .then(res => res.json())
     .then(
       (result) => {
-        console.log(result);
-        setListTrips(result)
+        console.log(result[0].trips);
+        setListTrips(result[0].trips)
         
         //setTrips(result.trips)
       },
@@ -24,7 +25,7 @@ useEffect(() => {
     )
 
  
-}, [])
+},[])
 
 
    
@@ -49,10 +50,12 @@ useEffect(() => {
     
         <div className=''>
             <p>{txtLang[props.lang][22]} {props.user.name} </p>
+            <p>{txtLang[props.lang][32]} {props.user.token}</p>
             <p>{txtLang[props.lang][23]} </p>
-            <img src={qrcode} />
+            <img alt="qr code" src={qrcode} />
         </div>
-    
+        <p>{txtLang[props.lang][33]}</p>
+    {listTrips!=={} ? (<ListTrips lang={props.lang}  itinerary={props.itinerary} setItinerary={props.setItinerary}  listTrips={listTrips} setListTrips={setListTrips}/>) :null}
       </div>
     );
 };

@@ -4,11 +4,19 @@ import {Dropdown} from 'bootstrap'
 import Connexion from './Connexion';
 
 const Header = (props) => {
+console.log(props.itinerary);
+
   var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
 var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
   return new Dropdown(dropdownToggleEl)
 })
 
+const clearItinerary =()=>{
+  
+    props.setItinerary(null)
+
+  
+}
     return (
       <div className="Header">
         <nav className="navbar navbar-expand-lg navbar-light bg-dark">
@@ -37,6 +45,7 @@ var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
             <button className="btn btn-sm btn-outline-light"  onClick={() => {props.setInfoPerso(false);props.setBarItineraire(!props.barItineraire)}}>
             {txtLang[props.lang][2]}
             </button>
+            {props.itinerary!==null ? <button className="btn btn-sm btn-outline-light"  onClick={clearItinerary} > {txtLang[props.lang][35]}</button> : null }
 
             
 <div className="dropdown">

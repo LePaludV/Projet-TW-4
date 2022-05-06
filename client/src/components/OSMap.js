@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React from "react";
 import {
   MapContainer,
   Marker,
@@ -23,7 +23,7 @@ const color = { color: 'red' }
 
 const OSMap = (props) => {
   const locations = props.locations; 
-  console.log(props.itinerary);
+  //console.log(props.itinerary);
 
   return (
     <div className="OSMap col">
@@ -45,7 +45,7 @@ const OSMap = (props) => {
           )
           
           }
-          <Lieux user={props.user} barItineraire={props.barItineraire} setBarItineraire={props.setBarItineraire} placesSelected={props.placesSelected} setPlacesSelected={props.setPlacesSelected} lang={props.lang} locations={locations} places={props.places} /> 
+          <Lieux infoPerso={props.infoPerso} setInfoPerso={props.setInfoPerso} user={props.user} barItineraire={props.barItineraire} setBarItineraire={props.setBarItineraire} placesSelected={props.placesSelected} setPlacesSelected={props.setPlacesSelected} lang={props.lang} locations={locations} places={props.places} /> 
           {props.itinerary != null ? <Polyline pathOptions={color} positions={props.itinerary} /> : null}
         </MapContainer>
       </div>

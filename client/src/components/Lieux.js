@@ -20,7 +20,7 @@ const Lieux = (props) => {
   const openModal=(e)=>{
     setIsModalOpen(!isModalOpen)
     document.querySelector(".OSMap").style.display="none"
-    var lieu=props.places.filter( (p)=> p._id==e)
+    var lieu=props.places.filter( (p)=> p._id===e)
     setPlaceToShow(lieu[0])
   }
   const closeModal=()=>{   
@@ -54,6 +54,7 @@ const Lieux = (props) => {
             <button className='btn btn-primary btn-sm' onClick={(e)=>{
               var tmp=props.placesSelected
               props.setBarItineraire(true)
+              props.setInfoPerso(false)
               
               if(!tmp.includes(place)){
                 props.setPlacesSelected(tmp.concat([place]))
