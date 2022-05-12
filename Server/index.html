@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Test</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <h1>RPS</h1>
+    <button onclick="sendalert('rock')">Rock</button>
+    <button onclick="sendalert('paper')">Paper</button>
+    <button onclick="sendalert('scissors')">Scissors</button>
+    <script>
+
+        var socket = io();
+        var result = "";
+
+        
+        function sendalert(choice) {
+            socket.emit("sendchoice", choice);
+
+            $("button").each(function (index) {
+                $(this).hide();
+            });
+
+            if ($('#result').length == 0) {
+                $("body").append("<h2 id='wait'>Waiting for other player...</h2>");
+            }
+        }
+
+        socket.on("sendresult", data => {
+            console.log(data)
+            if (socket.id != data[0]) {
+                $("#wait").remove();
+                result = "<h2 id='result'>" + data[0] + " choosed " + data[1] + "</h2>";
+                console.log(data[0] + " choosed " + data[1]);
+            }
+        });
+
+        socket.on("showresult", data => {
+            if ($('#wait').length > 0) {
+                $('#wait').remove();
+            }
+            $("body").append(result);
+        });
+    </script>
+</body>
+</html>
